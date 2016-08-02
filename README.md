@@ -1,2 +1,2 @@
 # JavaHub
-dsadasd
+Well just something about java ..

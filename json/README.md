@@ -6,7 +6,7 @@ This package codes support to using the pattern like node0.node1.node2 to get `J
 
 Example
 
-   `` {
+    {
       "name":"jackZeng",
       "address":{
 			"country":"China",
@@ -17,6 +17,6 @@ Example
   			{"java":"excellent"},
   			{"oracle":"good"}
   		]
-    }``
+    }
 
 Usually 

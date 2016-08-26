@@ -4,7 +4,7 @@
 
 This package codes support to using the pattern like node0.node1.node2 to get JSONObject or JSONArray when you need to operate some complex json data
 
-- Example
+### Example
 
 ```json
 {
@@ -26,7 +26,7 @@ This package codes support to using the pattern like node0.node1.node2 to get JS
 }
 ```
 
-- Usage
+### Usage
 
 ```java
 JSONObject srcJson = JSONObject.parseObject(jsonStr);

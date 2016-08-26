@@ -6,6 +6,7 @@ This package codes support to using the pattern like node0.node1.node2 to get `J
 
 Example
 
+```json
     {
       "name":"jackZeng",
       "address":{
@@ -18,5 +19,6 @@ Example
   			{"oracle":"good"}
   		]
     }
+```
 
 Usually 

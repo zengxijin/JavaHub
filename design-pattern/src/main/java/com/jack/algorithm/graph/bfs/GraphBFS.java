@@ -24,7 +24,7 @@ public class GraphBFS {
 			int index = graph.vertexes.indexOf(v);
 			int ajdacent[] = graph.adjacentMatrix[index];
 			for (int i = 0; i < ajdacent.length; i++) {
-				if (ajdacent[i] == 1) {
+				if (ajdacent[i] != 0) {
 					Vertex tmp = graph.vertexes.get(i);
 					if (tmp.isVisited() == false && tmp.getColor() == COLOR.WHITE) {
 						queue.add(tmp);

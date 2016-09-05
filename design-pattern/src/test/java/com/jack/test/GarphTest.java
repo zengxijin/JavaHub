@@ -2,6 +2,7 @@ package com.jack.test;
 
 import com.jack.algorithm.graph.Graph;
 import com.jack.algorithm.graph.bfs.GraphBFS;
+import com.jack.algorithm.graph.dfs.GraphDFS;
 
 public class GarphTest {
 
@@ -9,7 +10,9 @@ public class GarphTest {
 		Graph graph = new Graph();
 		graph.test();
 		
-		GraphBFS.bfs(graph);
+		//GraphBFS.bfs(graph);
+		//GraphDFS.recursiveDFS(graph);
+		GraphDFS.DFS(graph);
 	}
 
 }

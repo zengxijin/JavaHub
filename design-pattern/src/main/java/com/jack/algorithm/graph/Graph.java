@@ -13,6 +13,12 @@ public class Graph {
 		adjacentMatrix[vertexes.indexOf(v2)][vertexes.indexOf(v1)] = weight;
 	}
 	
+	public void printStatus(){
+		for(Vertex v:vertexes){
+			System.out.println(v.toString() + " " + v.isVisited() + " " + v.getColor());
+		}
+	}
+	
 	public void test(){
 		Vertex A = new Vertex("A");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 		Vertex B = new Vertex("B");

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Update_Data_String">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="proc_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parames" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="split" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_Data_StringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_Data_StringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Execute_Sql">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Sql_Str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parames" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="split" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Execute_SqlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Execute_SqlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Update_Data_StringSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_Data_String" />
+  </wsdl:message>
+  <wsdl:message name="Update_Data_StringSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_Data_StringResponse" />
+  </wsdl:message>
+  <wsdl:message name="Execute_SqlSoapIn">
+    <wsdl:part name="parameters" element="tns:Execute_Sql" />
+  </wsdl:message>
+  <wsdl:message name="Execute_SqlSoapOut">
+    <wsdl:part name="parameters" element="tns:Execute_SqlResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Data_Update_MSoap">
+    <wsdl:operation name="Update_Data_String">
+      <wsdl:input message="tns:Update_Data_StringSoapIn" />
+      <wsdl:output message="tns:Update_Data_StringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Execute_Sql">
+      <wsdl:input message="tns:Execute_SqlSoapIn" />
+      <wsdl:output message="tns:Execute_SqlSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Data_Update_MSoap" type="tns:Data_Update_MSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Update_Data_String">
+      <soap:operation soapAction="http://tempuri.org/Update_Data_String" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Execute_Sql">
+      <soap:operation soapAction="http://tempuri.org/Execute_Sql" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Data_Update_MSoap12" type="tns:Data_Update_MSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Update_Data_String">
+      <soap12:operation soapAction="http://tempuri.org/Update_Data_String" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Execute_Sql">
+      <soap12:operation soapAction="http://tempuri.org/Execute_Sql" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Data_Update_M">
+    <wsdl:port name="Data_Update_MSoap" binding="tns:Data_Update_MSoap">
+      <soap:address location="http://localhost:38894/Data_Update_M.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Data_Update_MSoap12" binding="tns:Data_Update_MSoap12">
+      <soap12:address location="http://localhost:38894/Data_Update_M.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

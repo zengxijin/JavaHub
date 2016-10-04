@@ -1,0 +1,40 @@
+{
+	"PROC_CHECK_USER": {
+		"input": {
+			"USER_CODE": "0",
+			"USER_PASS": "1"
+		},
+		"output": {
+			"USER_ID": "0",
+			"USER_CODE": "1",
+			"USER_PASS": "2",
+			"USER_NAME": "3",
+			"DEP_ID": "4",
+			"USER_TEL": "5",
+			"DEP_NAME": "6",
+			"DEP_AREA": "7",
+			"USER_JG": "8",
+			"DEP_LEVEL": "9",
+			"AREA_CODE": "10",
+			"T_IS_FLASH_AUTHORIZED": "11",
+			"T_YEARS": "12",
+			"T_IS_SK": "13",
+			"T_IS_SK_HOSP": "14",
+			"T_IS_XJ": "15",
+			"T_RJZ_DATE": "16",
+			"T_CH_START_DATE": "17",
+			"T_CH_END_DATE": "18",
+			"T_DY_MX_IS_HZ": "19",
+			"T_IS_BLUSH_DAY": "20",
+			"T_BLUSH_DAY": "21"
+		}
+	},
+	"Check_Ylzh_Bulsh": {
+		"input": {
+			
+		},
+		"output": {
+			
+		}
+	}
+}

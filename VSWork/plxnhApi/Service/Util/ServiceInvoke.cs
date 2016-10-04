@@ -10,12 +10,19 @@ namespace Service.Util
 {
     public class ServiceInvoke
     {
-        public static string Update_Data_String() 
+        public static string Update_Data_String(string procName,string parames,string split) 
         {
-            Data_Update_MSoapClient client = new Data_Update_MSoapClient();
-            string retVal = client.Update_Data_String("PROC_ZYBZ_NOTICE_CHECK", "AREA_NO&D401_10&D401_21&DEP_ID", "&");
-            
-            return "";
+            return getWebSoapClient().Update_Data_String(procName, parames, split);
+        }
+
+        public static string Execute_Sql(string sqlStr,string parames,string split)
+        {
+            return getWebSoapClient().Execute_Sql(sqlStr, parames, split);
+        }
+
+        private static Data_Update_MSoapClient getWebSoapClient()
+        {
+            return new Data_Update_MSoapClient();
         }
     }
 }

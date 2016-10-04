@@ -50,6 +50,7 @@
     <Compile Include="WebService\IService.cs" />
     <Compile Include="WebService\ServiceImpl\LoginAuth.cs" />
     <Compile Include="Util\ServiceInvoke.cs" />
+    <Compile Include="WebService\ServiceImpl\ServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

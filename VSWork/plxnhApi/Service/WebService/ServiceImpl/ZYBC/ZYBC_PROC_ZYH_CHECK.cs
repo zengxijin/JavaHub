@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service.WebService.ServiceImpl
 {
-    public class BYBC_PROC_ZYH_CHECK : ServiceBase
+    public class ZYBC_PROC_ZYH_CHECK : ServiceBase
     {
         /// <summary>
         /// 验证住院号是否重复

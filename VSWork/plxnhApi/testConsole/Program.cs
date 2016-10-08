@@ -13,8 +13,9 @@ namespace testConsole
     {
         static void Main(string[] args)
         {
-            json();
-            //hhh();
+            
+            //json();
+            hhh();
         }
 
         public static void json()
@@ -57,6 +58,7 @@ namespace testConsole
 
             string json = sb.ToString();
             JObject jo = (JObject)JsonConvert.DeserializeObject(json);
+            string ss = jo["PROC_CHECK_USER"]["callService"]["service"].ToString();
             //string zone = jo["PROC_CHECK_USER"]["input"]["USER_CODE"].ToString();
             Dictionary<string, int> dic = new Dictionary<string, int>();
             JObject tokenList = (JObject)jo["PROC_CHECK_USER"]["response"];

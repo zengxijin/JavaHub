@@ -64,5 +64,12 @@ namespace Service.Util
         {
             return getJsonNode(serviceName, "response");
         }
+
+        public static string getConfigService(string serviceName)
+        {
+            loadConfig();
+
+            return json[serviceName][serviceName]["callService"]["service"].ToString();
+        }
     }
 }

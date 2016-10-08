@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service.WebService.ServiceImpl.MZBC
 {
-    public class MZBC_PROC_ZYBZ_NOTICE_CHECK : ServiceBase
+    public class MZBC_Get_Member : ServiceBase
     {
         /// <summary>
         /// 根据新医疗证号查询家庭成员

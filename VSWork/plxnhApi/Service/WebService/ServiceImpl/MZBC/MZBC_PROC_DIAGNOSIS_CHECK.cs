@@ -16,7 +16,6 @@ namespace Service.WebService.ServiceImpl.MZBC
         /// <param name="parames">DIAGNOSIS_CODE 疾病代码</param>
         /// <param name="split">分割符&</param>
         /// <returns></returns>
-        
 		
 //0	成功
 //1	此疾病在疾病库中不存在

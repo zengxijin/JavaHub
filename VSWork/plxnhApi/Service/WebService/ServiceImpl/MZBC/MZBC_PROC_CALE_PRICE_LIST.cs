@@ -16,7 +16,7 @@ namespace Service.WebService.ServiceImpl.MZBC
         /// <param name="parames">DIAGNOSIS_CODE 疾病代码</param>
         /// <param name="split">分割符&</param>
         /// <returns></returns>
-        
+       
 		
 //入参：AREA_NO&D401_10&D401_21&DEP_ID&D501_16&D503_15&DEP_LEVEL&D503_16&D501_10&USER_ID&FLAG&D502_04&D502_09&D502_08&D502_10&D501_13&D501_14&D501_15&D503_03&D503_08&D503_09&OUTP_FACC&SELF_PAY&D501_09&D503_18&HOSP_NAME& D601_17_OUT&XY_OUT&ZCAOY_OUT&ZCHENGY_OUT
 

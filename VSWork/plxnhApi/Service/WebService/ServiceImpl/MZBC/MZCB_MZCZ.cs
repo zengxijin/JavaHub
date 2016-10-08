@@ -20,12 +20,6 @@ namespace Service.WebService.ServiceImpl.MZBC
 // 0	成功
 // 1	失败  
 // 冲正失败： S_Returns =1;错误信息   (分号分隔)
-
-		
-
-
-
-
     }
 }
 

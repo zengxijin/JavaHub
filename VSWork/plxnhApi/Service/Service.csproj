@@ -53,7 +53,7 @@
     </Compile>
     <Compile Include="Util\ConfigUtil.cs" />
     <Compile Include="WebService\IService.cs" />
-    <Compile Include="WebService\ServiceImpl\LoginAuth.cs" />
+    <Compile Include="WebService\ServiceImpl\login\LoginAuth.cs" />
     <Compile Include="Util\ServiceInvoke.cs" />
     <Compile Include="WebService\ServiceImpl\MZBC\MZBC_Check_Ylzh_Bulsh.cs" />
     <Compile Include="WebService\ServiceImpl\MZBC\MZBC_GetYljgjb.cs" />

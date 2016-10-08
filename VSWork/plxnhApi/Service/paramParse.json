@@ -1,9 +1,9 @@
 {
 	"PROC_CHECK_USER": {
 		"callService": {
-            "service": "Update_Data_String"
+			"service": "Update_Data_String"
 		},
-        "request": {
+		"request": {
 			"USER_CODE": "0",
 			"USER_PASS": "1"
 		},
@@ -33,14 +33,15 @@
 		}
 	},
 	"Check_Ylzh_Bulsh": {
-        "callService": {
-            "service": "Execute_Sql"
+		"callService": {
+			"service": "Execute_Sql"
 		},
-        "input": {
-			
+		"input": {
+			"AREA_NO": "0",
+			"M_MM": "1"
 		},
 		"output": {
-			
+			"D401_10": "1"
 		}
 	}
 }

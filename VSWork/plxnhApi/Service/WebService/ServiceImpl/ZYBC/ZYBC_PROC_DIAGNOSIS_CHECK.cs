@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.WebService.ServiceImpl
+namespace Service.WebService.ServiceImpl.ZYBC
 {
     public class ZYBC_PROC_DIAGNOSIS_CHECK : ServiceBase
     {

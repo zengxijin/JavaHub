@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.WebService.ServiceImpl
+namespace Service.WebService.ServiceImpl.ZYBC
 {
-    public class ZYBC_Check_Ylzh_Bulsh : ServiceBase
+    public class ZYBC_Get_Member : ServiceBase
     {
         /// <summary>
         /// 根据新医疗证号查询家庭成员

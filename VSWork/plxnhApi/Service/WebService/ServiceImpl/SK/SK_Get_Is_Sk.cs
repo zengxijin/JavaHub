@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.WebService.ServiceImpl
+namespace Service.WebService.ServiceImpl.SK
 {
     public class SK_Get_Is_Sk : ServiceBase
     {

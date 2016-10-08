@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.WebService.ServiceImpl
 {
-    class ServiceBase : IService
+    public class ServiceBase : IService
     {
         private string _sqlStr;
         /// <summary>

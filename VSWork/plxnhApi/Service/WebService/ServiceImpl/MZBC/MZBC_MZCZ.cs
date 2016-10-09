@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Service.WebService.ServiceImpl.MZBC
 {
-    public class MZCB_MZCZ : ServiceBase
+    public class MZBC_MZCZ : ServiceBase
     {
-        public MZCB_MZCZ()
+        public MZBC_MZCZ()
         {
             this.sqlStr = "MZCZ";
         }
@@ -21,9 +21,9 @@ namespace Service.WebService.ServiceImpl.MZBC
         /// <param name="split">分割符&</param>
         /// <returns></returns>
         
-// 0	成功
-// 1	失败  
-// 冲正失败： S_Returns =1;错误信息   (分号分隔)
+        // 0	成功
+        // 1	失败  
+        // 冲正失败： S_Returns =1;错误信息   (分号分隔)
     }
 }
 

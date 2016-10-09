@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Service.WebService.ServiceImpl.MZBC
 {
-    public class MZBC_Get_Member : ServiceBase
+    public class MZBC_PROC_ZYBZ_NOTICE_CHECK : ServiceBase
     {
-        public MZBC_Get_Member()
+        public MZBC_PROC_ZYBZ_NOTICE_CHECK()
         {
             this.sqlStr = "Get_Member";
         }
         /// <summary>
-        /// 根据新医疗证号查询家庭成员
+        /// 验证本人是否已经住院
         /// </summary>
-        /// <param name="SqlStr">Get_Member</param>
+        /// <param name="SqlStr">PROC_ZYBZ_NOTICE_CHECK</param>
         /// <param name="parames">AREA_NO&D401_10 病人地区编码(取前台选择的地区编码)&医疗证号</param>
         /// <param name="split">分割符&</param>
         /// <returns></returns>

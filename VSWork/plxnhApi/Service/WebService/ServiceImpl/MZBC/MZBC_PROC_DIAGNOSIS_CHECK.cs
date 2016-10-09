@@ -9,6 +9,10 @@ namespace Service.WebService.ServiceImpl.MZBC
 {
     public class MZBC_PROC_DIAGNOSIS_CHECK : ServiceBase
     {
+        public MZBC_PROC_DIAGNOSIS_CHECK()
+        {
+            this.sqlStr = "PROC_DIAGNOSIS_CHECK";
+        }
         /// <summary>
         /// 验证输入疾病是否在疾病库中存在
         /// </summary>

@@ -9,6 +9,10 @@ namespace Service.WebService.ServiceImpl.MZBC
 {
     public class MZCB_MZCZ : ServiceBase
     {
+        public MZCB_MZCZ()
+        {
+            this.sqlStr = "MZCZ";
+        }
         /// <summary>
         /// 门诊冲正
         /// </summary>

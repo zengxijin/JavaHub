@@ -9,6 +9,10 @@ namespace Service.WebService.ServiceImpl.MZBC
 {
     public class MZBC_GetYljgjb : ServiceBase
     {
+        public MZBC_GetYljgjb()
+        {
+            this.sqlStr = "GetYljgjb";
+        }
         /// <summary>
         /// 取出医院级别：(此方法可以不做)
         /// </summary>

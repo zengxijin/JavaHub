@@ -9,6 +9,10 @@ namespace Service.WebService.ServiceImpl.MZBC
 {
     public class MZBC_Get_S301_06 : ServiceBase
     {
+        public MZBC_Get_S301_06()
+        {
+            this.sqlStr = "Get_S301_06";
+        }
         /// <summary>
         /// 取出补偿类别
         /// </summary>

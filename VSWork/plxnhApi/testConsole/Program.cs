@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Service.WebService;
+using Service.WebService.ServiceImpl.login;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -76,6 +78,26 @@ namespace testConsole
             //    Console.WriteLine(item);
             //    item.
             //}
+        }
+
+        public static void loginTest()
+        {
+            IService service = new LoginAuth();
+
+            //直接塞参数进入Dictionary，由框架自动组装顺序
+            Dictionary<string, string> requestParam = new Dictionary<string, string>();
+            requestParam.Add("USER_CODE", "123456");
+            requestParam.Add("USER_PASS", "xxxxx");
+
+            //使用executeSql重载的Dictionary参数方法
+            string response = service.executeSql("", requestParam, "&");
+            Dictionary<string, string> responseDict = service.getResponseResultWrapperMap();
+
+            //通过Dictionary直接获取值
+            string USER_ID   = responseDict["USER_ID"];
+            string USER_CODE = responseDict["USER_CODE"]; 
+            //...
+
         }
     }
 }

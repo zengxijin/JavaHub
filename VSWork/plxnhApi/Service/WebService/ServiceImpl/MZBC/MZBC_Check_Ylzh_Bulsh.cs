@@ -17,6 +17,10 @@ namespace Service.WebService.ServiceImpl.MZBC
         /// <param name="split">分割符&</param>
         /// <returns></returns>
         
+        public MZBC_Check_Ylzh_Bulsh()
+        {
+            this.sqlStr = "Check_Ylzh_Bulsh";
+        }
 
     }
 }

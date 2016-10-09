@@ -10,6 +10,10 @@ namespace Service.WebService.ServiceImpl.ZYBC
 {
     public class ZYBC_PROC_DELETE_NOTICE : ServiceBase
     {
+        public ZYBC_PROC_DELETE_NOTICE()
+        {
+            this.sqlStr = "PROC_DELETE_NOTICE";
+        }
         /// <summary>
         /// 删除入院登记
         /// </summary>
@@ -18,19 +22,15 @@ namespace Service.WebService.ServiceImpl.ZYBC
         /// <param name="split">分割符&</param>
         /// <returns></returns>
 
-// AREA_CODE&D504_01
+        // AREA_CODE&D504_01
 
-// AREA_CODE	VARCHAR2(6)	病人地区编码(取前台选择的地区编码)
-// D504_01 VARCHAR2(24)	住院登记流水号
+        // AREA_CODE	VARCHAR2(6)	病人地区编码(取前台选择的地区编码)
+        // D504_01 VARCHAR2(24)	住院登记流水号
 
-// 0	成功
-// 1	失败 
-// 删除成功： S_Returns= 0
-// 删除失败：S_Returns= 1;错误信息   （分号分隔）
-
-
-
-
+        // 0	成功
+        // 1	失败 
+        // 删除成功： S_Returns= 0
+        // 删除失败：S_Returns= 1;错误信息   （分号分隔）
 
     }
 }

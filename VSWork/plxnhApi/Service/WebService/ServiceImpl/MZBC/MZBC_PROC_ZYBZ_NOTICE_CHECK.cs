@@ -9,6 +9,10 @@ namespace Service.WebService.ServiceImpl.MZBC
 {
     public class MZBC_Get_Member : ServiceBase
     {
+        public MZBC_Get_Member()
+        {
+            this.sqlStr = "Get_Member";
+        }
         /// <summary>
         /// 根据新医疗证号查询家庭成员
         /// </summary>

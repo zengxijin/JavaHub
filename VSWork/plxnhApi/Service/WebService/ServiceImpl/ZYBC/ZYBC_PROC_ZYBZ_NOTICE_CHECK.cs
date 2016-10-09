@@ -9,6 +9,11 @@ namespace Service.WebService.ServiceImpl.ZYBC
 {
     public class ZYBC_PROC_ZYBZ_NOTICE_CHECK : ServiceBase
     {
+        public ZYBC_PROC_ZYBZ_NOTICE_CHECK()
+        {
+            this.sqlStr = "PROC_ZYBZ_NOTICE_CHECK";
+        }
+        
         /// <summary>
         /// 验证本人是否已经住院
         /// </summary>

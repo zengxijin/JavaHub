@@ -9,6 +9,10 @@ namespace Service.WebService.ServiceImpl.ZYBC
 {
     public class ZYBC_PROC_ZYH_CHECK : ServiceBase
     {
+        public ZYBC_PROC_ZYH_CHECK()
+        {
+            this.sqlStr = "PROC_ZYH_CHECK";
+        }
         /// <summary>
         /// 验证住院号是否重复
         /// </summary>

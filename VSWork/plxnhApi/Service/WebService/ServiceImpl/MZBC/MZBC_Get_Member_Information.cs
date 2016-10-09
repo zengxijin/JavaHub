@@ -9,6 +9,11 @@ namespace Service.WebService.ServiceImpl.MZBC
 {
     public class MZBC_Get_Member_Information : ServiceBase
     {
+        public MZBC_Get_Member_Information()
+        {
+            this.sqlStr = "Get_Member_Information";
+        }
+        
         /// <summary>
         /// 查询基础人员信息
         /// </summary>

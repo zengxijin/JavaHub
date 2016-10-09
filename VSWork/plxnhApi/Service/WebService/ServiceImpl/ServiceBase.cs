@@ -98,21 +98,22 @@ namespace Service.WebService.ServiceImpl
         /// <returns></returns>
         public string executeSql(string SqlStr, string parames, string split)
         {
-            this.sqlStr  = SqlStr;
+            if (!string.IsNullOrEmpty(SqlStr)) this.sqlStr = SqlStr;
+
             this.parames = parames;
             this.split   = split;
 
             //根据配置文件决定调用哪个接口
-            string callService = ConfigUtil.getConfigService(SqlStr);
+            string callService = ConfigUtil.getConfigService(this.sqlStr);
 
             if (callService == "Update_Data_String")
             {
-                return this.executeResult = ServiceInvoke.Update_Data_String(SqlStr, parames, split);
+                return this.executeResult = ServiceInvoke.Update_Data_String(this.sqlStr, parames, split);
             }
 
             if (callService == "Execute_Sql")
             {
-                return this.executeResult = ServiceInvoke.Execute_Sql(SqlStr, parames, split);
+                return this.executeResult = ServiceInvoke.Execute_Sql(this.sqlStr, parames, split);
             }
 
             return "";
@@ -129,7 +130,9 @@ namespace Service.WebService.ServiceImpl
         /// <returns></returns>
         public string executeSql(string SqlStr, Dictionary<string,string> paramesDict, string split)
         {
-            Dictionary<string, int> configDict =  ConfigUtil.getRequestParamConfig(this.sqlStr);
+            if (!string.IsNullOrEmpty(SqlStr)) this.sqlStr = SqlStr;
+
+            Dictionary<string, int> configDict = ConfigUtil.getRequestParamConfig(this.sqlStr);
             
             //根据配置的下标升序排列，防止配置文件配置乱序
             Dictionary<string, int> dictSortedByValueIndex = configDict.OrderBy(p => p.Value).ToDictionary(p => p.Key, o => o.Value);
@@ -154,7 +157,7 @@ namespace Service.WebService.ServiceImpl
                 this.parames = plainParams.Substring(0, plainParams.Length - split.Length);
             }
 
-            return this.executeSql(SqlStr, this.parames, split);
+            return this.executeSql(this.sqlStr, this.parames, split);
         }
 
         /// <summary>

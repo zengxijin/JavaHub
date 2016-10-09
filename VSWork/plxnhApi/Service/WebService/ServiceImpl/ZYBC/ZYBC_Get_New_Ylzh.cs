@@ -9,6 +9,11 @@ namespace Service.WebService.ServiceImpl.ZYBC
 {
     public class ZYBC_Get_New_Ylzh : ServiceBase
     {
+        public ZYBC_Get_New_Ylzh()
+        {
+            this.sqlStr = "Get_New_Ylzh";
+        }
+        
         /// <summary>
         /// 根据旧医疗证号查询家庭成员
         /// </summary>
@@ -17,10 +22,10 @@ namespace Service.WebService.ServiceImpl.ZYBC
         /// <param name="split">分割符&</param>
         /// <returns></returns>
         
-// 0	成功
-// 1	失败    卡号不存在
-// 成功：S_Returns =0;D401_10 (分号分隔)
-// D401_10 VARCHAR2(18)  新医疗证号
+        // 0	成功
+        // 1	失败    卡号不存在
+        // 成功：S_Returns =0;D401_10 (分号分隔)
+        // D401_10 VARCHAR2(18)  新医疗证号
 
 
 

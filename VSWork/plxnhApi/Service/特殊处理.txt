@@ -1,0 +1,13 @@
+根据新医疗证号查询家庭成员：Get_Member
+返回参数：
+成功：S_Returns =0;家庭成员字符集
+如 0; D401_21/ D401_02; D401_21/ D401_02
+成员序号：D401_21  CHAR(2)
+成员姓名：D401_02  VARCHAR2(24)
+成员序号D401_21需要存储
+
+取出补偿类别 Get_S301_06
+成功返回
+S_Returns=0;ITEM_CODE/ ITEM_NAME; ITEM_CODE/ ITEM_NAME
+ITEM_CODE： VARCHAR2(3)  补偿类别编码  
+ITEM_NAME： VARCHAR2(64) 补偿类别名称

@@ -43,5 +43,310 @@
 		"output": {
 			"D401_10": "1"
 		}
+	},
+	"Get_Member": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10": "1"
+		},
+		"output": {
+			"D401_21/D401_02": "1"
+		}
+	},
+	"PROC_ZYBZ_NOTICE_CHECK": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10": "1",
+			"D401_21": "2",
+			"DEP_ID": "3"
+		},
+		"output": {
+			"info": "1"
+		}
+	},
+	"Get_Member_Information": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10": "1",
+			"D401_21": "2"
+		},
+		"output": {
+			"0": "0",
+			"D401_02": "1",
+			"D401_01": "2",
+			"SEX": "3",
+			"AGE": "4",
+			"D401_13": "5",
+			"NAMENATIONAL": "6",
+			"D601_17": "7",
+			"D503_17": "8",
+			"TC_REMAIN": "9",
+			"GRLB": "10",
+			"JTLB": "11",
+			"D401_04": "12"
+		}
+	},
+	"Get_S301_06": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0"
+		},
+		"output": {
+			"ITEM_CODE/ITEM_NAME": "1"
+		}
+	},
+	"GetYljgjb": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"DEP_ID": "1"
+		},
+		"output": {
+			"ITEM_CODE": "1"
+		}
+	},
+	"PROC_DIAGNOSIS_CHECK": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"DIAGNOSIS_CODE": "0"
+		},
+		"output": {
+			"info": "1"
+		}
+	},
+	"PROC_CALE_PRICE_LIST": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10": "1",
+			"D401_21": "2",
+			"DEP_ID": "3",
+			"D501_16": "4",
+			"D503_15": "5",
+			"DEP_LEVEL": "6",
+			"D503_16": "7",
+			"D501_10": "8",
+			"USER_ID": "9",
+			"FLAG": "10",
+			"D502_04": "11",
+			"D502_09": "12",
+			"D502_08": "13",
+			"D502_10": "14",
+			"D501_13": "15",
+			"D501_14": "16",
+			"D501_15": "17",
+			"D503_03": "18",
+			"D503_08": "19",
+			"D503_09": "20",
+			"OUTP_FACC": "21",
+			"SELF_PAY": "22",
+			"D501_09": "23",
+			"D503_18": "24",
+			"HOSP_NAME": "25",
+			" D601_17_OUT": "26",
+			"XY_OUT": "27",
+			"ZCAOY_OUT": "28",
+			"ZCHENGY_OUT": "29"
+		},
+		"output": {
+			"O_TOTAL_COSTS": "1",
+			"O_ZF_COSTS": "2",
+			"O_TOTAL_CHAGE": "3",
+			"O_OUTP_FACC": "4",
+			"O_OUT_JJ": "5",
+			"O_D503_09": "6",
+			" D601_17_OUT": "7",
+			" XY_OUT": "8",
+			" ZCAOY_OUT": "9",
+			" ZCHENGY_OUT": "10"
+		}
+	},
+	"Print_Mz_New": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"T_D502_01": "1"
+		},
+		"output": {
+			"D501_01": "1",
+			"D501_03": "2",
+			"d501_04": "3",
+			"d401_04": "4",
+			"d501_08": "5",
+			"D401_13": "6",
+			"d601_09": "7",
+			"d601_16": "8",
+			"d610_17": "9",
+			"d501_10": "10",
+			"d101_02": "11",
+			"item_name": "12",
+			"diagnosis_name": "13",
+			"d503_03": "14",
+			"d503_08": "15",
+			"d501_09": "16",
+			"d501_09_T": "17",
+			"TOTAL_COSTS": "18",
+			"D506_19": "19",
+			"DY_DATE": "20",
+			"D503_18": "21"
+		}
+	},
+	"MZCZ": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"T_D502_01": "1"
+		},
+		"output": {
+			"info": "1"
+		}
+	},
+	"MZCZ": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"T_D502_01": "1"
+		},
+		"output": {
+			"info": "1"
+		}
+	},
+	"Get_New_Ylzh": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10_TEMP": "1"
+		},
+		"output": {
+			"D401_10": "1"
+		}
+	},
+	"Get_New_Ylzh": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10_TEMP": "1"
+		},
+		"output": {
+			"D401_10": "1"
+		}
+	},
+	"Get_Member_Information_Rydj": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10": "1",
+			"D401_21": "2"
+		},
+		"output": {
+			"D401_10": "1",
+			" D401_21": "2",
+			"D401_02": "3",
+			" XB": "4",
+			"D401_03": "5",
+			"D401_01": "6",
+			"AGE": "7",
+			"D401_13": "8",
+			" INP_DATE": "9",
+			"IDENTITY": "10"
+		}
+	},
+	"PROC_ZYH_CHECK": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"DEP_ID": "0",
+			"D504_09": "1"
+		},
+		"output": {
+			"info": "1"
+		}
+	},
+	"PROC_NEW_NOTICE": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"COME_AREA": "0",
+			"AREA_CODE": "1",
+			"D401_10": "2",
+			"D504_02": "3",
+			"D504_03": "4",
+			"D504_04": "5",
+			"D504_05": "6",
+			"D504_06": "7",
+			"D504_21": "8",
+			"D504_09": "9",
+			"D504_10": "10",
+			"D504_11": "11",
+			"D504_14": "12",
+			"D504_19": "13",
+			"D504_16": "14",
+			"D504_28": "15"
+		},
+		"output": {
+			"D504_01": "1"
+		}
+	},
+	"PROC_UPDATE_NOTICE": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_CODE": "0",
+			"D504_01": "1",
+			"D504_21": "2",
+			"D504_09": "3",
+			"D504_10": "4",
+			"D504_19": "5",
+			"D504_16": "6",
+			"D504_11": "7",
+			"D504_28": "8"
+		},
+		"output": {
+			"info": "1"
+		}
+	},
+	"PROC_DELETE_NOTICE": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_CODE": "0",
+			"D504_01": "1"
+		},
+		"output": {
+			"info": "1"
+		}
 	}
 }

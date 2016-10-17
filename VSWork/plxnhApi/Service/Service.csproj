@@ -63,7 +63,7 @@
     <Compile Include="WebService\ServiceImpl\MZBC\MZBC_PROC_CALE_PRICE_LIST.cs" />
     <Compile Include="WebService\ServiceImpl\MZBC\MZBC_PROC_DIAGNOSIS_CHECK.cs" />
     <Compile Include="WebService\ServiceImpl\MZBC\MZBC_PROC_ZYBZ_NOTICE_CHECK.cs" />
-    <Compile Include="WebService\ServiceImpl\MZBC\MZCB_MZCZ.cs" />
+    <Compile Include="WebService\ServiceImpl\MZBC\MZBC_MZCZ.cs" />
     <Compile Include="WebService\ServiceImpl\RJZ\RJZ_Find_Member1.cs" />
     <Compile Include="WebService\ServiceImpl\RJZ\RJZ_Find_New_Ylzh.cs" />
     <Compile Include="WebService\ServiceImpl\RJZ\RJZ_getShisuanResult.cs" />

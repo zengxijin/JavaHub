@@ -246,18 +246,6 @@
 			"D401_10": "1"
 		}
 	},
-	"Get_New_Ylzh": {
-		"callService": {
-			"service": "Execute_Sql"
-		},
-		"input": {
-			"AREA_NO": "0",
-			"D401_10_TEMP": "1"
-		},
-		"output": {
-			"D401_10": "1"
-		}
-	},
 	"Get_Member_Information_Rydj": {
 		"callService": {
 			"service": "Execute_Sql"
@@ -347,6 +335,252 @@
 		},
 		"output": {
 			"info": "1"
+		}
+	},
+	"Find_Member1": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"DEP_ID": "1",
+			"D504_09": "2"
+		},
+		"output": {
+			"D401_21/D401_02": "1"
+		}
+	},
+	"Find_New_Ylzh": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"DEP_ID": "1",
+			"D504_09": "2"
+		},
+		"output": {
+			"D401_10": "1"
+		}
+	},
+	"Get_Member_Zy_Information": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO": "0",
+			"D401_10": "1",
+			"D401_21": "2",
+			"DEP_ID": "3"
+		},
+		"output": {
+			"0":"0",
+			"D504_03":"1",
+			"D504_04":"2",
+			"D504_01":"3",
+			"D504_05":"4",
+			"D504_06":"5",
+			"D504_08":"6",
+			"D401_13":"7",
+			"D504_10":"8",
+			"D504_11":"9",
+			"D504_16":"10",
+			"D504_19":"11",
+			"D504_07":"12",
+			"D504_02":"13",
+			"D505_COSTS":"14",
+			"D505_REDEEMABLE":"15",
+			"D504_21":"16",
+			"D505_SELFPAY":"17",
+			"D506_25":"18",
+			"CHSJ":"19",
+			"D506_23_JT":"20",
+			"D506_23_GR":"21",
+			"DIAGNOSIS_NAME":"22",
+			"SBSJ":"23",
+			"D401_04":"24",
+			"IDENTITY":"25"
+		}
+	},
+	"Save_Row": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"D505_02":"0",
+			"COME_AREA":"1",
+			"AREA_CODE":"2",
+			"D505_04":"3",
+			"D505_08":"4",
+			"D505_07":"5",
+			"D505_09":"6",
+			"D505_ID_HIS":"7",
+			"USER_ID":"8",
+			"D504_14":"9",
+			"USER_NAME":"10",
+			"LEVEL":"11"
+
+		},
+		"output": {
+			"0":"0",
+			"d505_01":"1",
+			"TOTAL_COSTS ":"2",
+			"TOTAL_CHAGE":"3",
+			"ZF_COSTS":"4"
+		}
+	},
+	"PROC_DELETE_PRICE_LIST": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_CODE":"0",
+			"D504_01":"1",
+			"START_DATE":"2",
+			"END_DATE":"3"
+		},
+		"output": {
+			"info":"1"
+		}
+	},
+	"Get_S301_06_Zy": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_CODE":"0"
+		},
+		"output": {
+			"info":"1"
+		}
+	},
+	"getShisuanResult": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"D505_02":"0",
+			"COME_AREA":"1",
+			"AREA_CODE":"2",
+			"D504_07":"3",
+			"D504_02":"4",
+			"D504_14":"5",
+			"D504_21":"6",
+			"D504_11":"7",
+			"D506_15":"8",
+			"D504_15":"9",
+			"D504_06":"10",
+			"D504_10":"11",
+			"D504_12":"12",
+			"D504_29":"13",
+			"D504_16_D":"14",
+			"D504_16_T":"15",
+			"S701_01":"16"
+		},
+		"output": {
+			"0":"0",
+			"TOTAL_COSTS":"1",
+			"ZF_COSTS":"2",
+			"TOTAL_CHAGE":"3",
+			"D506_23":"4",
+			"D506_18":"5",
+			"BEGINPAY":"6",
+			"SCALE":"7",
+			"HEAV_REDEEM_SUM":"8",
+			"REDEEM_TOTAL":"9"
+
+		}
+	},
+	"Print_Zy_New": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO":"0",
+			"D504_01":"1"
+		},
+		"output": {
+			"0":"0",
+			"D504_01":"1",
+			"D506_16":"2",
+			"D506_25":"3",
+			"D504_03":"4",
+			"D504_08":"5",
+			"IDENTITY":"6",
+			"HZ_NAME":"7",
+			"HZ_D401_01":"8",
+			"D504_18":"9",
+			"xb":"10",
+			"D301_09":"11",
+			"D504_28":"12",
+			"D504_06":"13",
+			"D101_02":"14",
+			"ITEM_NAME":"15",
+			"D504_09":"16",
+			"DIAGNOSIS_NAME":"17",
+			"BCLX":"18",
+			"D504_11":"19",
+			"D504_12":"20",
+			"D504_13":"21",
+			"D506_03":"22",
+			"BEGINPAY":"23",
+			"BZBL":"24",
+			"BZHJ":"25",
+			"BZHJ_DX":"26",
+			"GRFD":"27",
+			"D404_17":"28",
+			"ZFYHJ":"29",
+			"BCFYHJ":"30"
+		}
+	},
+	"Zycz": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO":"0",
+			"D505_02":"1",
+			"IS_SAVE":"2"
+		},
+		"output": {
+			"D504_01":"1"
+		}
+	},
+	"sqlp": {
+		"callService": {
+			"service": "Update_Data_String"
+		},
+		"input": {
+			"AREA_NO":"0",
+			"D504_01":"1",
+			"USER_NAME":"2"
+		},
+		"output": {
+			"info":"1"
+		}
+	},
+	"Get_Is_Sk": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO":"0"
+		},
+		"output": {
+			"T_COUNT":"0",
+			"SK_TYPE":"1"
+		}
+	},
+	"Get_Is_Hops_Sk": {
+		"callService": {
+			"service": "Execute_Sql"
+		},
+		"input": {
+			"AREA_NO":"0",
+			"DEP_ID":"1"
+		},
+		"output": {
+			"info":"1"
 		}
 	}
 }

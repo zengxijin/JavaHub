@@ -16,9 +16,10 @@ namespace testConsole
         static void Main(string[] args)
         {
             
-            //json();
-            hhh();
+            json();
+            //hhh();
         }
+
 
         public static void json()
         {

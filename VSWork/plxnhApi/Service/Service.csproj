@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="DB\CreateTable.sql" />
     <Content Include="paramParse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

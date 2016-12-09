@@ -16,13 +16,7 @@ public class JsonNodeReaderTest {
 
 	public static void main(String[] args) {
 		
-		String ss = "开福区双拥路科大佳园北区15栋一单元2802";
-		System.out.println(ss.length());
-		String i = "20";
-		if(Integer.valueOf(i) ==  20){
-			System.out.println(true);
-		}
-		//new JsonNodeReaderTest().test();
+		new JsonNodeReaderTest().test();
 	}
 
 	private final static String jsonStr= "{"

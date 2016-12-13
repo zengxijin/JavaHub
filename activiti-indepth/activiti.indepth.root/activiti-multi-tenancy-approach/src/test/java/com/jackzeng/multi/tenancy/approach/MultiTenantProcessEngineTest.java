@@ -23,7 +23,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.jackzeng.multi.tenancy.approach.cfg.ProcessEngineCfg;
-
+/**
+ * @ClassName: MultiTenantProcessEngineTest
+ * @author:  Jack Zeng 
+ * @CreateDate: [2016年12月13日 下午5:58:47]   
+ * @UpdateUser: Jack Zeng 
+ * @UpdateDate: [2016年12月13日 下午5:58:47]   
+ * @UpdateRemark: [TODO()]
+ * @Description:  基于activiti多租户的测试
+ *                一个ProcessEngine对应多个租户下的多个user
+ *                测试主要基于MySQL数据库进行，如需切换到别的数据库，需要改写createDataSource方法
+ * @version: [V1.0]
+ */
 public class MultiTenantProcessEngineTest {
 
 	private DummyTenantInfoHolder tenantInfoHolder; //多租户信息存储和管理，具有简单的路由功能

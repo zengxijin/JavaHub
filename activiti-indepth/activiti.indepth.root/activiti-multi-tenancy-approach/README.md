@@ -1,0 +1,2 @@
+# activiti-multi-tenancy-approach
+The multi-tenancy-approach is One ProcessEngine for multi-tenant-mutil-schema,this is the better way compare to mutil-ProcessEngine-mutil-tenant or one-ProcessEngine-one-schema

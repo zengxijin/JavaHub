@@ -14,7 +14,7 @@
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean> -->
-	<bean id="springContextHolder" class="com.smartcrc.util.SpringContextHolder"></bean>
+	<bean id="springContextHolder" class="com.jackzeng.util.SpringContextHolder"></bean>
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -38,7 +38,7 @@
 	</bean>
 	
 	<bean id="ldapQueryConfig"
-		class="com.smartcrc.bpm.auth.ldap.LDAPQueryConfig">
+		class="com.jackzeng.bpm.auth.ldap.LDAPQueryConfig">
 		<property name="userIdQuery" value="(&amp;(objectCategory=person)(objectClass=user)(name={0}))" />
 		<property name="groupQuery" value="(&amp;(objectCategory=person)(objectClass=group)(name={0}))" />
 	</bean>

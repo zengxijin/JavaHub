@@ -5,21 +5,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <!-- MySQL数据库信息 -->
-	<bean id="multiTenantDBCfg" class="com.smartcrc.mutiltenant.cfg.MultiTenantDBCfg">
+	<bean id="multiTenantDBCfg" class="com.jackzeng.mutiltenant.cfg.MultiTenantDBCfg">
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/"></property>
 		<property name="jdbcUser" value="root"></property>
 		<property name="jdbcPassword" value="admin"></property>
 	</bean>
 
-	<bean id="dummyTenantInfoHolder" class="com.smartcrc.mutiltenant.DummyTenantInfoHolder">
+	<bean id="dummyTenantInfoHolder" class="com.jackzeng.mutiltenant.DummyTenantInfoHolder">
 	</bean>
 
 	<bean id="userTenantMapperHolder"
-		class="com.smartcrc.mutiltenant.cfg.UserTenantMapperHolder">
+		class="com.jackzeng.mutiltenant.cfg.UserTenantMapperHolder">
 		<property name="userTenantMapperInfo">
 			<list>
 			    <!-- 租户信息 -->
-				<bean class="com.smartcrc.mutiltenant.cfg.UserTenantMapper">
+				<bean class="com.jackzeng.mutiltenant.cfg.UserTenantMapper">
 					<property name="userTenant">
 						<map>
 							<!-- 租户组ID -->
@@ -35,7 +35,7 @@
 					<!-- 租户组对应的数据库schema -->
 					<property name="tenantSchema" value="tenantA_schema" />
 				</bean>
-				<bean class="com.smartcrc.mutiltenant.cfg.UserTenantMapper">
+				<bean class="com.jackzeng.mutiltenant.cfg.UserTenantMapper">
 					<property name="userTenant">
 						<map>
 							<entry key="tenantB">
@@ -48,7 +48,7 @@
 					</property>
 					<property name="tenantSchema" value="tenantB_schema" />
 				</bean>
-				<bean class="com.smartcrc.mutiltenant.cfg.UserTenantMapper">
+				<bean class="com.jackzeng.mutiltenant.cfg.UserTenantMapper">
 					<property name="userTenant">
 						<map>
 							<entry key="tenantC">

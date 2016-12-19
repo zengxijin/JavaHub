@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySources;
   @PropertySource(value = "classpath:db.properties", ignoreResourceNotFound = true),
   @PropertySource(value = "classpath:engine.properties", ignoreResourceNotFound = true)
 })
-@ComponentScan(basePackages = {"com.smartcrc.activiti.rest.conf","com.smartcrc.mutiltenant"})
+@ComponentScan(basePackages = {"com.jackzeng.activiti.rest.conf","com.jackzeng.mutiltenant"})
 @ImportResource({"classpath:activiti-context-cfg.xml","classpath:crc-mutiltenant-cfg.xml"})
 public class ApplicationConfiguration {
   

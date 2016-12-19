@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
-@ComponentScan({"com.smartcrc","org.activiti.rest.exception", "org.activiti.rest.service.api"})
+@ComponentScan({"com.jackzeng","org.activiti.rest.exception", "org.activiti.rest.service.api"})
 @EnableAsync
 public class DispatcherServletConfiguration extends WebMvcConfigurationSupport {
 

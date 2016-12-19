@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+   <bean id="multitenantProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath*:crc-multitenant.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="properties" ref="multitenantProperties" />
+    </bean>
+	
+	<!-- 多租户MySQL数据库信息 -->
+	<bean id="multiTenantDBCfg" class="com.smartcrc.mutiltenant.cfg.MultiTenantDBCfg">
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/"></property>
+		<property name="jdbcUser" value="root"></property>
+		<property name="jdbcPassword" value="admin"></property>
+	</bean>
+
+	<bean id="btmTransactionManager" factory-method="getTransactionManager"
+		class="bitronix.tm.TransactionManagerServices" destroy-method="shutdown" />
+
+	<bean id="transactionManager"
+		class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager" ref="btmTransactionManager" />
+		<property name="userTransaction" ref="btmTransactionManager" />
+	</bean>
+
+	<bean id="dummyTenantInfoHolder"
+		class="com.smartcrc.mutiltenant.DummyTenantInfoHolder">
+	</bean>
+
+	<bean id="processEngineConfigurationTenant"
+		class="org.activiti.engine.impl.cfg.multitenant.MultiSchemaMultiTenantProcessEngineConfiguration">
+		<constructor-arg ref="dummyTenantInfoHolder" />
+
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="databaseType" value="mysql" />
+		<property name="asyncExecutor" ref="asyncExecutor" />
+		<property name="asyncExecutorActivate" value="false" />
+		<property name="defaultFailedJobWaitTime" value="1" />
+		<property name="asyncFailedJobWaitTime" value="1" />
+		
+		<property name="idGenerator">
+			<bean class="org.activiti.engine.impl.persistence.StrongUuidGenerator" />
+		</property>
+		<property name="enableProcessDefinitionInfoCache" value="true" />
+	</bean>
+
+	<bean id="asyncExecutor"
+		class="org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor">
+		<property name="defaultAsyncJobAcquireWaitTimeInMillis"
+			value="1000" />
+		<property name="defaultTimerJobAcquireWaitTimeInMillis"
+			value="1000" />
+	</bean>
+</beans>

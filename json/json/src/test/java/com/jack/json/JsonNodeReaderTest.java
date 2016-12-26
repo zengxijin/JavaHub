@@ -16,7 +16,11 @@ public class JsonNodeReaderTest {
 
 	public static void main(String[] args) {
 		
-		new JsonNodeReaderTest().test();
+		String json = "[{\"key\": \"Content-Type\",\"value\": \"application/json\"},{\"key\": \"Authorization\",\"value\": \"Tocken asdlkhasutYJnsajdakseiuasyciaskdasld09wrjlsdfjsdyf==\"}]";
+		JSONArray array = JSONObject.parseArray(json);
+		System.out.println(array.size());
+		
+		//new JsonNodeReaderTest().test();
 	}
 
 	private final static String jsonStr= "{"

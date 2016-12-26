@@ -8,6 +8,6 @@
   <modules>
   	<module>activiti-multi-tenancy-approach</module>
   	<module>activiti-rest-ext</module>
-  	
+    <module>activiti-engine-api</module>
   </modules>
 </project>

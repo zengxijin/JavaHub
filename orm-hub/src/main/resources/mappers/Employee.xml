@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackzeng.orm.mappers.EmployeeMapper">
+
+	<resultMap type="Employee" id="EmployeeResult">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="position" column="position" />
+	</resultMap>
+
+	<select id="findAllEmployees" resultMap="EmployeeResult">
+		select * from employee
+	</select>
+
+	<select id="findEmployeeById" parameterType="int" resultType="Employee">
+		select id, name, age, position from employee where
+		id=#{id}
+	</select>
+
+	<insert id="insertEmployee" parameterType="Employee">
+		insert into employee(id,name,age,position)
+		values(#{id},#{name},#{age},#{position})
+	</insert>
+
+	<update id="updateEmployee" parameterType="Employee">
+		update employee set name=#{name}, age=#{age}, position=#{position} where
+		id=#{id}
+	</update>
+
+</mapper>

@@ -24,4 +24,11 @@ public class CRCResponse implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public static class CODE {
+		public static final String NORMAL             = "20000"; 
+		public static final String UNAUTHORIZED       = "30001"; 
+		public static final String RESOURCE_NOT_FOUND = "40004";
+		public static final String ERROR              = "50000";
+	}
 }

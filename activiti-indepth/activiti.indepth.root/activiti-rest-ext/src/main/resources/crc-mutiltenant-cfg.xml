@@ -6,24 +6,18 @@
    http://www.springframework.org/schema/context
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
    
-   <bean id="multitenantProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <list>
-                <value>classpath*:crc-multitenant.properties</value>
-            </list>
-        </property>
-    </bean>
-    
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
-        <property name="properties" ref="multitenantProperties" />
-    </bean>
-	
+    <bean id="tenantEngineProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="location" value="classpath:crc-multitenant.properties"/>
+      <property name="ignoreUnresolvablePlaceholders" value="true"/>
+   </bean>
+
 	<!-- 多租户MySQL数据库信息 -->
 	<bean id="multiTenantDBCfg" class="com.jackzeng.mutiltenant.cfg.MultiTenantDBCfg">
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/"></property>
-		<property name="jdbcUser" value="root"></property>
-		<property name="jdbcPassword" value="admin"></property>
+		<property name="jdbcUrl" value="${bpm.jdbc.url}"></property>
+		<property name="jdbcUser" value="${bpm.jdbc.jdbcUser}"></property>
+		<property name="jdbcPassword" value="${bpm.jdbc.jdbcPassword}"></property>
 	</bean>
+
 
 	<bean id="btmTransactionManager" factory-method="getTransactionManager"
 		class="bitronix.tm.TransactionManagerServices" destroy-method="shutdown" />

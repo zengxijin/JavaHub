@@ -74,7 +74,7 @@ public class DeploymentServiceController {
 	@Qualifier("multiTenantEngine")
 	protected ProcessEngine multiTenantEngine;
 	
-	@Value("#{multitenantProperties['activiti.resource.path']}")
+	@Value("${bpm.resource.path}")
 	protected String resourcePath;
 	
 	/**
@@ -138,19 +138,19 @@ public class DeploymentServiceController {
 							.createDataSource(dataSource, schemaRequest.getSchema(), schemaRequest.getJdbcType())
 							.createSchema();
 					if (falg) {
-						schemaResponse.setCode("20000");
+						schemaResponse.setCode(CRCResponse.CODE.NORMAL);
 						schemaResponse.setMsg("OK");
 					} else {
 						schemaResponse.setMsg("create schema fail");
-						schemaResponse.setCode("50000");
+						schemaResponse.setCode(CRCResponse.CODE.ERROR);
 					}
 				} else {
-					schemaResponse.setCode("50000");
+					schemaResponse.setCode(CRCResponse.CODE.ERROR);
 					schemaResponse.setMsg(schemaRequest.getJdbcType() + " unsuported,create schema fail");
 				}
 			}
 		} catch (Exception e) {
-			schemaResponse.setCode("50000");
+			schemaResponse.setCode(CRCResponse.CODE.ERROR);
 			schemaResponse.setMsg("create schema internal error");
 			LOGGER.error("create schema internal error",e);
 		}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry location="D:/Activiti/mysql-connector-java-5.1.27.jar" />
+
+	<context id="context1">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306/bpm_app" driverClass="com.mysql.jdbc.Driver"
+			password="admin" userId="root" />
+		<javaModelGenerator targetPackage="com.jackzeng.mybatis.gen.entity"
+			targetProject="mybatis-gen/src/main/java" />
+		<sqlMapGenerator targetPackage="com.jackzeng.mybatis.gen.mapper" 
+		    targetProject="mybatis-gen/src/main/java" />
+		<javaClientGenerator targetPackage="com.jackzeng.mybatis.gen.dao"
+			targetProject="mybatis-gen/src/main/java" type="XMLMAPPER" />
+		<table schema="bpm_app" tableName="tenant_schema_cfg" enableCountByExample="false" enableUpdateByExample="true"
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<columnOverride column="tenant_id" property="tenant_id" />
+			<columnOverride column="tenant_schema" property="tenant_schema" />
+			<columnOverride column="db_type" property="db_type" />
+			<columnOverride column="created_date" property="created_date" />
+			<columnOverride column="created_by" property="created_by" />
+			<columnOverride column="description" property="description" />
+		</table>
+	</context>
+</generatorConfiguration>

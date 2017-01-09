@@ -17,7 +17,7 @@
 		    targetProject="mybatis-gen/src/main/java" />
 		<javaClientGenerator targetPackage="com.jackzeng.mybatis.gen.dao"
 			targetProject="mybatis-gen/src/main/java" type="XMLMAPPER" />
-		<table schema="bpm_app" tableName="tenant_schema_cfg" enableCountByExample="false" enableUpdateByExample="true"
+		<!-- <table schema="bpm_app" tableName="tenant_schema_cfg" enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 			<columnOverride column="tenant_id" property="tenant_id" />
 			<columnOverride column="tenant_schema" property="tenant_schema" />
@@ -25,6 +25,17 @@
 			<columnOverride column="created_date" property="created_date" />
 			<columnOverride column="created_by" property="created_by" />
 			<columnOverride column="description" property="description" />
+		</table> -->
+		<table schema="bpm_app" tableName="bpm_inst_info" enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<columnOverride column="transaction_no" property="transaction_no" />
+			<columnOverride column="process_inst_id" property="process_inst_id" />
+			<columnOverride column="process_status" property="process_status" />
+			<columnOverride column="created_by" property="created_by" />
+			<columnOverride column="created_date" property="created_date" />
+			<columnOverride column="updated_by" property="updated_by" />
+			<columnOverride column="updated_date" property="updated_date" />
 		</table>
+		
 	</context>
 </generatorConfiguration>

@@ -20,5 +20,6 @@
 	</environments>
 	<mappers>
 		<mapper resource='com/jackzeng/mybatis/gen/mapper/TenantSchemaCfgMapper.xml' />
+		<mapper resource='com/jackzeng/mybatis/gen/mapper/BpmInstInfoMapper.xml' />
 	</mappers>
 </configuration>

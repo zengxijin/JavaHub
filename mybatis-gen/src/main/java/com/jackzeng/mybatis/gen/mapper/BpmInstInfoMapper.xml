@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackzeng.mybatis.gen.dao.BpmInstInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jackzeng.mybatis.gen.entity.BpmInstInfo">
+    <id column="transaction_no" jdbcType="CHAR" property="transaction_no" />
+    <result column="process_inst_id" jdbcType="BIGINT" property="process_inst_id" />
+    <result column="process_status" jdbcType="VARCHAR" property="process_status" />
+    <result column="created_by" jdbcType="VARCHAR" property="created_by" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="created_date" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updated_by" />
+    <result column="updated_date" jdbcType="TIMESTAMP" property="updated_date" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    transaction_no, process_inst_id, process_status, created_by, created_date, updated_by, 
+    updated_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bpm_inst_info
+    where transaction_no = #{transaction_no,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bpm_inst_info
+    where transaction_no = #{transaction_no,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jackzeng.mybatis.gen.entity.BpmInstInfo">
+    insert into bpm_inst_info (transaction_no, process_inst_id, process_status, 
+      created_by, created_date, updated_by, 
+      updated_date)
+    values (#{transaction_no,jdbcType=CHAR}, #{process_inst_id,jdbcType=BIGINT}, #{process_status,jdbcType=VARCHAR}, 
+      #{created_by,jdbcType=VARCHAR}, #{created_date,jdbcType=TIMESTAMP}, #{updated_by,jdbcType=VARCHAR}, 
+      #{updated_date,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jackzeng.mybatis.gen.entity.BpmInstInfo">
+    insert into bpm_inst_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transaction_no != null">
+        transaction_no,
+      </if>
+      <if test="process_inst_id != null">
+        process_inst_id,
+      </if>
+      <if test="process_status != null">
+        process_status,
+      </if>
+      <if test="created_by != null">
+        created_by,
+      </if>
+      <if test="created_date != null">
+        created_date,
+      </if>
+      <if test="updated_by != null">
+        updated_by,
+      </if>
+      <if test="updated_date != null">
+        updated_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transaction_no != null">
+        #{transaction_no,jdbcType=CHAR},
+      </if>
+      <if test="process_inst_id != null">
+        #{process_inst_id,jdbcType=BIGINT},
+      </if>
+      <if test="process_status != null">
+        #{process_status,jdbcType=VARCHAR},
+      </if>
+      <if test="created_by != null">
+        #{created_by,jdbcType=VARCHAR},
+      </if>
+      <if test="created_date != null">
+        #{created_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_by != null">
+        #{updated_by,jdbcType=VARCHAR},
+      </if>
+      <if test="updated_date != null">
+        #{updated_date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jackzeng.mybatis.gen.entity.BpmInstInfo">
+    update bpm_inst_info
+    <set>
+      <if test="process_inst_id != null">
+        process_inst_id = #{process_inst_id,jdbcType=BIGINT},
+      </if>
+      <if test="process_status != null">
+        process_status = #{process_status,jdbcType=VARCHAR},
+      </if>
+      <if test="created_by != null">
+        created_by = #{created_by,jdbcType=VARCHAR},
+      </if>
+      <if test="created_date != null">
+        created_date = #{created_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_by != null">
+        updated_by = #{updated_by,jdbcType=VARCHAR},
+      </if>
+      <if test="updated_date != null">
+        updated_date = #{updated_date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where transaction_no = #{transaction_no,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jackzeng.mybatis.gen.entity.BpmInstInfo">
+    update bpm_inst_info
+    set process_inst_id = #{process_inst_id,jdbcType=BIGINT},
+      process_status = #{process_status,jdbcType=VARCHAR},
+      created_by = #{created_by,jdbcType=VARCHAR},
+      created_date = #{created_date,jdbcType=TIMESTAMP},
+      updated_by = #{updated_by,jdbcType=VARCHAR},
+      updated_date = #{updated_date,jdbcType=TIMESTAMP}
+    where transaction_no = #{transaction_no,jdbcType=CHAR}
+  </update>
+</mapper>

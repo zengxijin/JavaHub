@@ -3,8 +3,6 @@ package com.jackzeng.mybatis.gen.entity;
 import java.util.Date;
 
 public class TenantSchemaCfg {
-    private Long id;
-
     private String tenant_id;
 
     private String tenant_schema;
@@ -16,14 +14,6 @@ public class TenantSchemaCfg {
     private String created_by;
 
     private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTenant_id() {
         return tenant_id;

@@ -12,12 +12,12 @@ public class TenantSchemaCfgServiceTest {
 	@Test
 	public void insertTest(){
 		TenantSchemaCfg cfg = new TenantSchemaCfg();
-		//cfg.setId(1L);
 		cfg.setTenant_id("paydayLoan");
 		cfg.setTenant_schema("paydayLoanSchema");
 		cfg.setDb_type("mysql");
 		cfg.setCreated_by("XijinZeng");
 		cfg.setCreated_date(new Date());
+		cfg.setDescription("ddd");
 		
 		TenantSchemaCfgService service = new TenantSchemaCfgService();
 		Assert.assertTrue(service.insert(cfg) > 0);

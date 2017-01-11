@@ -2,70 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jackzeng.mybatis.gen.dao.TenantSchemaCfgMapper">
   <resultMap id="BaseResultMap" type="com.jackzeng.mybatis.gen.entity.TenantSchemaCfg">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="tenant_id" jdbcType="VARCHAR" property="tenant_id" />
+    <id column="tenant_id" jdbcType="VARCHAR" property="tenant_id" />
     <result column="tenant_schema" jdbcType="VARCHAR" property="tenant_schema" />
     <result column="db_type" jdbcType="VARCHAR" property="db_type" />
     <result column="created_date" jdbcType="TIMESTAMP" property="created_date" />
     <result column="created_by" jdbcType="VARCHAR" property="created_by" />
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, tenant_id, tenant_schema, db_type, created_date, created_by, description
+    tenant_id, tenant_schema, db_type, created_date, created_by, description
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tenant_schema_cfg
-    where id = #{id,jdbcType=BIGINT}
+    where tenant_id = #{tenant_id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tenant_schema_cfg
-    where id = #{id,jdbcType=BIGINT}
+    where tenant_id = #{tenant_id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.jackzeng.mybatis.gen.entity.TenantSchemaCfg">
-    insert into tenant_schema_cfg (id, tenant_id, tenant_schema, 
-      db_type, created_date, created_by, 
-      description)
-    values (#{id,jdbcType=BIGINT}, #{tenant_id,jdbcType=VARCHAR}, #{tenant_schema,jdbcType=VARCHAR}, 
-      #{db_type,jdbcType=VARCHAR}, #{created_date,jdbcType=TIMESTAMP}, #{created_by,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR})
+    insert into tenant_schema_cfg (tenant_id, tenant_schema, db_type, 
+      created_date, created_by, description
+      )
+    values (#{tenant_id,jdbcType=VARCHAR}, #{tenant_schema,jdbcType=VARCHAR}, #{db_type,jdbcType=VARCHAR}, 
+      #{created_date,jdbcType=TIMESTAMP}, #{created_by,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.jackzeng.mybatis.gen.entity.TenantSchemaCfg">
     insert into tenant_schema_cfg
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="tenant_id != null">
         tenant_id,
       </if>
@@ -86,9 +53,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="tenant_id != null">
         #{tenant_id,jdbcType=VARCHAR},
       </if>
@@ -109,54 +73,9 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tenant_schema_cfg
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.tenant_id != null">
-        tenant_id = #{record.tenant_id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.tenant_schema != null">
-        tenant_schema = #{record.tenant_schema,jdbcType=VARCHAR},
-      </if>
-      <if test="record.db_type != null">
-        db_type = #{record.db_type,jdbcType=VARCHAR},
-      </if>
-      <if test="record.created_date != null">
-        created_date = #{record.created_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.created_by != null">
-        created_by = #{record.created_by,jdbcType=VARCHAR},
-      </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tenant_schema_cfg
-    set id = #{record.id,jdbcType=BIGINT},
-      tenant_id = #{record.tenant_id,jdbcType=VARCHAR},
-      tenant_schema = #{record.tenant_schema,jdbcType=VARCHAR},
-      db_type = #{record.db_type,jdbcType=VARCHAR},
-      created_date = #{record.created_date,jdbcType=TIMESTAMP},
-      created_by = #{record.created_by,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.jackzeng.mybatis.gen.entity.TenantSchemaCfg">
     update tenant_schema_cfg
     <set>
-      <if test="tenant_id != null">
-        tenant_id = #{tenant_id,jdbcType=VARCHAR},
-      </if>
       <if test="tenant_schema != null">
         tenant_schema = #{tenant_schema,jdbcType=VARCHAR},
       </if>
@@ -173,16 +92,15 @@
         description = #{description,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where tenant_id = #{tenant_id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jackzeng.mybatis.gen.entity.TenantSchemaCfg">
     update tenant_schema_cfg
-    set tenant_id = #{tenant_id,jdbcType=VARCHAR},
-      tenant_schema = #{tenant_schema,jdbcType=VARCHAR},
+    set tenant_schema = #{tenant_schema,jdbcType=VARCHAR},
       db_type = #{db_type,jdbcType=VARCHAR},
       created_date = #{created_date,jdbcType=TIMESTAMP},
       created_by = #{created_by,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
+    where tenant_id = #{tenant_id,jdbcType=VARCHAR}
   </update>
 </mapper>

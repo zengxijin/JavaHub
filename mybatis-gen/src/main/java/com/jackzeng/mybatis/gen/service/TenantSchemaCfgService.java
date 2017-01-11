@@ -8,15 +8,16 @@ import com.jackzeng.mybatis.gen.util.MyBatisSqlSession;
 
 public class TenantSchemaCfgService {
 
-	public int insert(TenantSchemaCfg tenantSchemaCfg) {
+	public int insert(TenantSchemaCfg cfg) {
 		SqlSession session = MyBatisSqlSession.getSqlSession();
 		try{
 			TenantSchemaCfgMapper mapper = session.getMapper(TenantSchemaCfgMapper.class);
-			int efftRow = mapper.insert(tenantSchemaCfg);
+			int effedRow = mapper.insert(cfg);
 			session.commit();
-			return efftRow;
+			return effedRow;
 		}finally{
 			session.close();
 		}
 	}
+
 }

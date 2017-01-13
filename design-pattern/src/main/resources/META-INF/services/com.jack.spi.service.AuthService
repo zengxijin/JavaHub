@@ -1,0 +1,2 @@
+com.jack.spi.service.impl.DBAuthServiceImpl
+com.jack.spi.service.impl.LDAPAuthServiceImpl

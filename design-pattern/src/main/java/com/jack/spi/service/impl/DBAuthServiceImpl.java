@@ -1,0 +1,19 @@
+package com.jack.spi.service.impl;
+
+import com.jack.spi.service.AuthService;
+
+public class DBAuthServiceImpl implements AuthService {
+
+	@Override
+	public String findUserNameById(String userId) {
+		System.out.println("find user info from database...");
+		return "UserNameFromDB";
+	}
+
+	@Override
+	public boolean checkUser(String userId, String password) {
+		System.out.println("check user info from database...");
+		return true;
+	}
+
+}

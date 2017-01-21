@@ -68,6 +68,16 @@
 	      <artifactId>jaxrs</artifactId>
 	    </dependency>
 	    
+	    <dependency>
+	      <groupId>org.wildfly.swarm</groupId>
+	      <artifactId>swagger</artifactId>
+	    </dependency>
+	    
+	    <dependency>
+	      <groupId>org.wildfly.swarm</groupId>
+	      <artifactId>bootstrap</artifactId>
+	    </dependency>
+	   
 	   <dependency>
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-jaxb-provider</artifactId>
@@ -79,6 +89,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.wildfly.swarm</groupId>
+		  <artifactId>logging</artifactId>
 		</dependency>
 
 	</dependencies>

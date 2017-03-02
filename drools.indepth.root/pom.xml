@@ -19,5 +19,9 @@
   </properties>
   <modules>
   	<module>drools-embed-sample</module>
+  	<module>drools-kie-wb-kjar</module>
   </modules>
+  
+
+  
 </project>

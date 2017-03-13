@@ -20,6 +20,7 @@
   <modules>
   	<module>drools-embed-sample</module>
   	<module>drools-kie-wb-kjar</module>
+  	<module>kie-server-rest-commands</module>
   </modules>
   
 

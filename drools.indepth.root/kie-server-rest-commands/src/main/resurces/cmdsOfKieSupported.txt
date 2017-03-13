@@ -1,0 +1,15 @@
+BatchExecutionCommand
+InsertObjectCommand
+RetractCommand
+ModifyCommand
+GetObjectCommand
+InsertElementsCommand
+FireAllRulesCommand
+StartProcessCommand
+SignalEventCommand
+CompleteWorkItemCommand
+AbortWorkItemCommand
+QueryCommand
+SetGlobalCommand
+GetGlobalCommand
+GetObjectsCommand

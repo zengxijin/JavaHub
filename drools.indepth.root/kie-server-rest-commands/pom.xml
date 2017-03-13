@@ -7,8 +7,8 @@
     <artifactId>drools.indepth.root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>drools-kie-wb-kjar</artifactId>
-  <name>drools-kie-wb-kjar</name>
+  <artifactId>kie-server-rest-commands</artifactId>
+  <name>kie-server-rest-commands</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,6 +21,7 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-api</artifactId>
@@ -52,44 +53,36 @@
 	      <artifactId>kie-internal</artifactId>
 	      <version>${runtime.version}</version>
 	    </dependency>
-	    
-	    <dependency>
-		    <groupId>org.drools</groupId>
-		    <artifactId>drools-workbench-models-datamodel-api</artifactId>
-		    <version>${runtime.version}</version>
+        
+		<dependency>
+		    <groupId>org.kie.server</groupId>
+		    <artifactId>kie-server-client</artifactId>
+		    <version>6.5.0.Final</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.jboss.logging</groupId>
+		    		<artifactId>jboss-logging</artifactId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
-	    
-	    <dependency>
-		    <groupId>org.drools</groupId>
-		    <artifactId>drools-workbench-models-guided-dtable</artifactId>
-		    <version>${runtime.version}</version>
+        
+        <dependency>
+		    <groupId>org.kie</groupId>
+		    <artifactId>kie-ci</artifactId>
+		    <version>6.5.0.Final</version>
 		</dependency>
 		
 		<dependency>
-		    <groupId>org.jbpm</groupId>
-		    <artifactId>jbpm-bpmn2</artifactId>
-		    <version>${runtime.version}</version>
+		    <groupId>org.codehaus.jettison</groupId>
+		    <artifactId>jettison</artifactId>
+		    <version>1.3.8</version>
 		</dependency>
-    
-     <!-- 自动从kie-workbench下载jar包 -->
-	    
-	    <dependency>
-	      <groupId>com.qf</groupId>
-		  <artifactId>desTable</artifactId>
-		  <version>1.4</version>
-	    </dependency>
-    
+		
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.24</version>
+		</dependency>
+        
   </dependencies>
-  
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.kie</groupId>
-        <artifactId>kie-maven-plugin</artifactId>
-        <version>6.5.0.Final</version>
-        <extensions>true</extensions>
-      </plugin>
-    </plugins>
-  </build>
-  
 </project>

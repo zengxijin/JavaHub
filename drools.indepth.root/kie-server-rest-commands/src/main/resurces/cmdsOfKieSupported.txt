@@ -1,6 +1,6 @@
 BatchExecutionCommand
 InsertObjectCommand
-RetractCommand
+RetractCommand(is removed,use DeleteCommand instead)
 ModifyCommand
 GetObjectCommand
 InsertElementsCommand

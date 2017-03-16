@@ -35,10 +35,10 @@
 
 	<bean id="ldapConfigurator" class="org.activiti.ldap.LDAPConfigurator">
 		<!-- Server connection params -->
-		<property name="server" value="ldap://quark.com" />
+		<property name="server" value="ldap://xxxxx.com" />
 		<property name="port" value="389" />
-		<property name="user" value="XijinZeng@quark.com" />
-		<property name="password" value="Koko7410" />
+		<property name="user" value="xxxxx@quark.com" />
+		<property name="password" value="xxxxx" />
 
 		<!-- Query params -->
 		<property name="baseDn"

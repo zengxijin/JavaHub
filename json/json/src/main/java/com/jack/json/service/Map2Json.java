@@ -16,7 +16,7 @@ public class Map2Json {
 		info.setName("jack");
 		info.setOccupation("公务员");
 		
-		map.put("org.zeng.UserInfo", info);
+		map.put(info.getClass().getCanonicalName(), info);
 		map.put("abcString", "stringValue123");
 		map.put("boolean", true);
 		map.put("int", 1234567);
@@ -24,6 +24,18 @@ public class Map2Json {
 		
 		String json = JSONObject.toJSONString(map);
 		System.out.println(json);
+		
+		JSONObject obj = JSONObject.parseObject(json);
+		String userInfo = obj.getString(UserInfo.class.getCanonicalName());
+		System.out.println(userInfo);
+		
+		try {
+			Class clz = Class.forName(UserInfo.class.getCanonicalName());
+			UserInfo info2 = JSONObject.toJavaObject(obj.getJSONObject(UserInfo.class.getCanonicalName()), clz);
+			System.out.println(info2.getName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

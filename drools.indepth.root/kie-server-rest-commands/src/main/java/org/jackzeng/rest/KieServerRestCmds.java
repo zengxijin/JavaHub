@@ -22,7 +22,7 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class KieServerRestCmds {
 
-	private static KieCommands kieCommands = null;
+	private volatile static KieCommands kieCommands = null;
 	
 	public static KieCommands getKieCommands(){
 		if(kieCommands == null){

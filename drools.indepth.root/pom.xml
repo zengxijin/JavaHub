@@ -22,6 +22,7 @@
   	<module>drools-kie-wb-kjar</module>
   	<module>kie-server-rest-commands</module>
     <module>kie-service-rest-api</module>
+    <module>kie-service-spring-boot</module>
   </modules>
   
 

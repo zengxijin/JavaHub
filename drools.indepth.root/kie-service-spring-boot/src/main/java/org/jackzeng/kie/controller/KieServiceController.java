@@ -21,7 +21,8 @@ public class KieServiceController {
 			HttpServletRequest request,
 			HttpServletResponse response,
 			@RequestBody String message
-			){
+			)
+	{
 		
 		KieServiceResponse resp = new KieServiceResponse();
 		

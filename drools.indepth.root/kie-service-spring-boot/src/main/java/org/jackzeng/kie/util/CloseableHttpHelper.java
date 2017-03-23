@@ -14,6 +14,8 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 public class CloseableHttpHelper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CloseableHttpHelper.class);
 	
@@ -42,8 +44,8 @@ public class CloseableHttpHelper {
 			//连接和响应超时设置，必须大于0
 			if(connTimeoutSeconds > 0 && socketTimeoutSeconds > 0){
 				RequestConfig.Builder customReqConf = RequestConfig.custom()
-						.setConnectTimeout(connTimeoutSeconds)
-						.setSocketTimeout(socketTimeoutSeconds);
+						.setConnectTimeout(connTimeoutSeconds*1000)
+						.setSocketTimeout(socketTimeoutSeconds*1000);
 				httpPost.setConfig(customReqConf.build());
 			}
 			//请求body
@@ -74,5 +76,9 @@ public class CloseableHttpHelper {
 				httpClient.close();
 			}
 		}
+	}
+	
+	public static String postRequest(String url, String requestbody, Map<String, String> headers) throws Exception{
+		return postRequest(url,requestbody,headers,5,60);
 	}
 }

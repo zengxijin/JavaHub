@@ -82,24 +82,25 @@
   </dependencies>
   
    <build>
-        <plugins>
-            <plugin>
+    	<finalName>kie-service-${version}</finalName>
+	    <plugins>
+	        
+	        <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.5.2.RELEASE</version>
                 <configuration>
-			        <mainClass>org.jackzeng.kie.BootAppCfg</mainClass>
-			        <layout>ZIP</layout>
-			    </configuration>
+                    <mainClass>org.jackzeng.kie.BootAppCfg</mainClass>
+                </configuration>
                 <executions>
-			        <execution>
-			          <goals>
-			            <goal>repackage</goal>
-			          </goals>
-			        </execution>
-		      </executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-        </plugins>
-    </build>
+	        
+	    </plugins>
+	</build>
   
 </project>

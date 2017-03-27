@@ -14,8 +14,6 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
 public class CloseableHttpHelper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CloseableHttpHelper.class);
 	

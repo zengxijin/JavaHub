@@ -12,6 +12,8 @@ public class BRMCServerInfo {
 	
 	private String activeCfg;
 	
+	private long fireMax;
+	
 	private Map<String,Map<String,String>> infoMap;
 
 	public String getActiveCfg() {
@@ -28,6 +30,14 @@ public class BRMCServerInfo {
 
 	public void setInfoMap(Map<String, Map<String, String>> infoMap) {
 		this.infoMap = infoMap;
+	}
+
+	public long getFireMax() {
+		return fireMax;
+	}
+
+	public void setFireMax(long fireMax) {
+		this.fireMax = fireMax;
 	}
 	
 	

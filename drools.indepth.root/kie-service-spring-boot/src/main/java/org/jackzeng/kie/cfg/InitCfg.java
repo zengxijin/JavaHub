@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jackzeng.kie.util.BRMCBase64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-
 
 
 @Configuration
@@ -57,6 +57,13 @@ public class InitCfg {
 			map.put(ProCfg.KEY_BASICAUTH, "Basic " + BRMCBase64.EncodeBase64(basicAuth));
 			
 			buffer.put(key, map);
+		}
+		
+		String fireMax = props.getProperty(ProCfg.KEY_FIRE_MAX);
+		if(StringUtils.isNoneBlank(fireMax)){
+			brmcServerInfo.setFireMax(Long.parseLong(fireMax));
+		}else{
+			brmcServerInfo.setFireMax(-1);
 		}
 		
 		brmcServerInfo.setInfoMap(buffer);

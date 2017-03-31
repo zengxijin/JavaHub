@@ -23,13 +23,17 @@ import com.alibaba.fastjson.JSONObject;
 public class KieRequestHelper {
 	
 	public static JSONObject assembleKieRest(JSONObject json){
-		return assembleKieRest(json, false, null);
+		return assembleKieRest(json, false, null, -1);
+	}
+	
+	public static JSONObject assembleKieRest(JSONObject json, long fireMax){
+		return assembleKieRest(json, false, null, fireMax);
 	}
 	
 	/**
 	 * 返回具有get-objects命令的参数，需要给定returnKey
 	 */
-	public static JSONObject assembleKieRest(JSONObject json, boolean isGetObjects, String returnKey){
+	public static JSONObject assembleKieRest(JSONObject json, boolean isGetObjects, String returnKey, long fireMax){
 		JSONObject obj = new JSONObject();
 		obj.put(KieServiceRawCfg.LOOKUP, json.getString(BRMCRequestCfg.RULE_SESSION));
 		
@@ -37,7 +41,7 @@ public class KieRequestHelper {
 		JSONArray insert = parseInsert(json);
 		JSONObject process = parseStartProcess(json);
 		JSONObject query = parseQuery(json);
-		JSONObject fireAllRules = parseFireAllRules();
+		JSONObject fireAllRules = parseFireAllRules(fireMax);
 		
 		if(insert != null){
 			for(int i=0;i<insert.size();i++){
@@ -162,8 +166,16 @@ public class KieRequestHelper {
 	/**
 	 * 组装fire-all-rules命令参数
 	 */
-	public static JSONObject parseFireAllRules(){
+	public static JSONObject parseFireAllRules(long fireMax){
 		JSONObject fire = new JSONObject();
+		
+		if(fireMax > 0){
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put(KieServiceRawCfg.FIRE_RULES_MAX, fireMax);
+			map.put(KieServiceRawCfg.OUT_IDENTIFIER, "brmc");
+			fire.put(KieServiceRawCfg.FIRE_ALL_RULES, "");
+		}
+		
 		fire.put(KieServiceRawCfg.FIRE_ALL_RULES, "");
 		return fire;
 	}

@@ -17,6 +17,8 @@ public class KieServiceRawCfg {
 		public static final String QUERY          = "query";
 		public static final String START_PROCESS  = "start-process";
 		public static final String FIRE_ALL_RULES = "fire-all-rules";
+		//max times limit to invoke rules,avoid infinite-loop call
+		public static final String FIRE_RULES_MAX = "max";  
 		public static final String GET_OBJECTS    = "get-objects";
 		
 		//action params

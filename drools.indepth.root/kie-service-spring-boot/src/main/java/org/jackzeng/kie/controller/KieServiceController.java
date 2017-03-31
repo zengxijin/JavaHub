@@ -81,7 +81,10 @@ public class KieServiceController {
 		
 		String requestUrl = server + rawPath + ruleBase + version;
 		
-		String requestBody = KieRequestHelper.assembleKieRest(JSONObject.parseObject(message)).toJSONString();
+		String requestBody = KieRequestHelper.assembleKieRest(
+				JSONObject.parseObject(message), 
+				serverInfo.getFireMax()
+				).toJSONString();
 		
 		try {
 			//调用kie-server集群

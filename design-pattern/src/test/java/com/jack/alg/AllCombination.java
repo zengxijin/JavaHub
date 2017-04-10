@@ -1,16 +1,11 @@
 package com.jack.alg;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class AllCombination {
 
 	public static void main(String[] args) {
-		AllCombination a = new AllCombination();
-		String ss = "";
 		
-		String[] N ={"1","2","3","4","5","6","7","8"}; 
 		int[] abc = {1,2,3,4,5,6,7,8};
 		
 		for(int i=1;i <= abc.length;i++){

@@ -16,6 +16,7 @@ public class AuthServiceSPITest {
 
 		while (services.hasNext()) {
 			AuthService service = services.next();
+			System.out.println(service.getClass().getSuperclass());
 			System.out.println(service.findUserNameById("jackZeng") + " " + service.checkUser("jackZeng", "123456"));
 		}
 	}

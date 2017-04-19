@@ -3,7 +3,7 @@ package com.jack.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jack.design_pattern.filter.Filter;
+import com.jack.design.pattern.filter.Filter;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

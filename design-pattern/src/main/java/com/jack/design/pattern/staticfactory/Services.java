@@ -1,4 +1,4 @@
-package com.jack.design_pattern.staticfactory;
+package com.jack.design.pattern.staticfactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

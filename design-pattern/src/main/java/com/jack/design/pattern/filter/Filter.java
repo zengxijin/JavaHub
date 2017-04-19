@@ -1,4 +1,4 @@
-package com.jack.design_pattern.filter;
+package com.jack.design.pattern.filter;
 
 import java.util.ArrayList;
 import java.util.List;

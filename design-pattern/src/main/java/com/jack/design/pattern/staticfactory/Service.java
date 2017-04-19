@@ -1,4 +1,4 @@
-package com.jack.design_pattern.staticfactory;
+package com.jack.design.pattern.staticfactory;
 
 /**
  * @ClassName: Service

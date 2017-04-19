@@ -1,8 +1,8 @@
-package com.jack.design_pattern;
+package com.jack.design.pattern;
 
-import com.jack.design_pattern.provider.MySqlProvider;
-import com.jack.design_pattern.staticfactory.Service;
-import com.jack.design_pattern.staticfactory.Services;
+import com.jack.design.pattern.provider.MySqlProvider;
+import com.jack.design.pattern.staticfactory.Service;
+import com.jack.design.pattern.staticfactory.Services;
 
 public class App 
 {

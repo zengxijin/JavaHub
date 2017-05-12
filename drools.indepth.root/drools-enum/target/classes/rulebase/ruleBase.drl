@@ -1,0 +1,19 @@
+package rulebase;
+
+import com.qf.EntityWrapper;
+import com.qf.LoanStatus;
+import com.qf.RuleResult;
+
+dialect  "mvel"
+no-loop true
+
+rule "ruleBase"
+    when
+    $w : EntityWrapper( stringField == "String" || enumField == LoanStatus.UNPAYED)
+    then
+    RuleResult fact = new RuleResult();
+    fact.setRuleName("ruleBase");
+    insert(fact);
+    System.out.println("I am fired");
+
+end

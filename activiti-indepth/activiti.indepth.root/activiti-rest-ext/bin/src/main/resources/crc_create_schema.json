@@ -1,0 +1,8 @@
+{
+    "schema":"tenantABCSchema",
+    "tenantId":"tenantABCId",
+    "jdbcUrl":"jdbc:mysql://localhost:3306/",
+	"jdbcUser":"root",
+	"jdbcPassword":"admin",
+	"jdbcType":"mysql"
+}

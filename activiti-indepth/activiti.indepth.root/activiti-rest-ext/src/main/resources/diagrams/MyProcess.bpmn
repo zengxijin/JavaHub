@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <collaboration id="Collaboration">
+    <participant id="DeskService" name="DeskService" processRef="process_pool1"></participant>
+    <participant id="pool1" name="BackendService" processRef="process_pool1"></participant>
+    <messageFlow id="messageflow1" sourceRef="servicetask1" targetRef="receivetask1"></messageFlow>
+  </collaboration>
+  <process id="process_pool1" name="process_pool1" isExecutable="true">
+    <laneSet id="laneSet_process_pool1">
+      <lane id="lane1">
+        <flowNodeRef>usertask1</flowNodeRef>
+        <flowNodeRef>servicetask1</flowNodeRef>
+        <flowNodeRef>startevent1</flowNodeRef>
+      </lane>
+    </laneSet>
+    <userTask id="usertask1" name="User Task"></userTask>
+    <serviceTask id="servicetask1" name="Service Task"></serviceTask>
+    <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+  </process>
+  <process id="process_pool1" name="process_pool1" isExecutable="true">
+    <laneSet id="laneSet_process_pool1">
+      <lane id="lane2">
+        <flowNodeRef>receivetask1</flowNodeRef>
+        <flowNodeRef>servicetask2</flowNodeRef>
+        <flowNodeRef>usertask2</flowNodeRef>
+        <flowNodeRef>endevent1</flowNodeRef>
+      </lane>
+    </laneSet>
+    <receiveTask id="receivetask1" name="Receive Task"></receiveTask>
+    <serviceTask id="servicetask2" name="Service Task"></serviceTask>
+    <sequenceFlow id="flow3" sourceRef="receivetask1" targetRef="servicetask2"></sequenceFlow>
+    <userTask id="usertask2" name="User Task"></userTask>
+    <sequenceFlow id="flow4" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow5" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="DeskService" id="BPMNShape_DeskService">
+        <omgdc:Bounds height="150.0" width="500.0" x="170.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="lane1" id="BPMNShape_lane1">
+        <omgdc:Bounds height="150.0" width="480.0" x="190.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="pool1" id="BPMNShape_pool1">
+        <omgdc:Bounds height="150.0" width="500.0" x="170.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="290.0" y="300.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="480.0" y="300.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="200.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="receivetask1" id="BPMNShape_receivetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="210.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="360.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="510.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="630.0" y="110.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="messageflow1" id="BPMNEdge_messageflow1">
+        <omgdi:waypoint x="532.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="532.0" y="222.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="222.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="155.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="395.0" y="327.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="327.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="235.0" y="327.0"></omgdi:waypoint>
+        <omgdi:waypoint x="290.0" y="327.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="315.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="360.0" y="127.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="465.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="127.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="615.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="630.0" y="127.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

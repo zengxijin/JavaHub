@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- MySQL数据库信息 -->
+	<bean id="multiTenantDBCfg" class="com.jackzeng.mutiltenant.cfg.MultiTenantDBCfg">
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/"></property>
+		<property name="jdbcUser" value="root"></property>
+		<property name="jdbcPassword" value="admin"></property>
+	</bean>
+
+	<bean id="dummyTenantInfoHolder" class="com.jackzeng.mutiltenant.DummyTenantInfoHolder">
+	</bean>
+
+	<bean id="userTenantMapperHolder"
+		class="com.jackzeng.mutiltenant.cfg.UserTenantMapperHolder">
+		<property name="userTenantMapperInfo">
+			<list>
+			    <!-- 租户信息 -->
+				<bean class="com.jackzeng.mutiltenant.cfg.UserTenantMapper">
+					<property name="userTenant">
+						<map>
+							<!-- 租户组ID -->
+							<entry key="tenantA">
+							    <!-- 租户用户ID -->
+								<list>
+									<value>tenantA_user1</value>
+									<value>tenantA_user2</value>
+								</list>
+							</entry>
+						</map>
+					</property>
+					<!-- 租户组对应的数据库schema -->
+					<property name="tenantSchema" value="tenantA_schema" />
+				</bean>
+				<bean class="com.jackzeng.mutiltenant.cfg.UserTenantMapper">
+					<property name="userTenant">
+						<map>
+							<entry key="tenantB">
+								<list>
+									<value>tenantB_user3</value>
+									<value>tenantB_user4</value>
+								</list>
+							</entry>
+						</map>
+					</property>
+					<property name="tenantSchema" value="tenantB_schema" />
+				</bean>
+				<bean class="com.jackzeng.mutiltenant.cfg.UserTenantMapper">
+					<property name="userTenant">
+						<map>
+							<entry key="tenantC">
+								<list>
+									<value>tenantC_user5</value>
+									<value>tenantC_user6</value>
+								</list>
+							</entry>
+						</map>
+					</property>
+					<property name="tenantSchema" value="tenantC_schema" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+</beans>

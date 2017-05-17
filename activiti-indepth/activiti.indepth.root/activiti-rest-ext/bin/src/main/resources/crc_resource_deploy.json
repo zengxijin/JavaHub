@@ -1,0 +1,8 @@
+{
+	"name":"xxResourceName",
+	"resourceId":"xxResourceID",
+	"type":"xml",
+	"userId":"tenantABCUser",
+	"tenantId":"tenantABCId",
+	"schema":"tenantABC"
+}

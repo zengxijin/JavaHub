@@ -35,8 +35,10 @@
         </activiti:taskListener>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow3" sourceRef="verifyTaskDone" targetRef="theEnd"></sequenceFlow>
-    <endEvent id="theEnd"></endEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <callActivity id="callactivity1" name="Call activity" calledElement="askLeave"></callActivity>
+    <sequenceFlow id="flow3" sourceRef="verifyTaskDone" targetRef="callactivity1"></sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="callactivity1" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_activitiAdhoc">
     <bpmndi:BPMNPlane bpmnElement="activitiAdhoc" id="BPMNPlane_activitiAdhoc">
@@ -49,8 +51,11 @@
       <bpmndi:BPMNShape bpmnElement="verifyTaskDone" id="BPMNShape_verifyTaskDone">
         <omgdc:Bounds height="55.0" width="105.0" x="250.0" y="190.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="theEnd" id="BPMNShape_theEnd">
-        <omgdc:Bounds height="35.0" width="35.0" x="395.0" y="200.0"></omgdc:Bounds>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="660.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="callactivity1" id="BPMNShape_callactivity1">
+        <omgdc:Bounds height="73.0" width="111.0" x="451.0" y="181.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="65.0" y="217.0"></omgdi:waypoint>
@@ -62,7 +67,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
         <omgdi:waypoint x="355.0" y="217.0"></omgdi:waypoint>
-        <omgdi:waypoint x="395.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="451.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="562.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="660.0" y="217.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

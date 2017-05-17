@@ -1,0 +1,14 @@
+package ruleBase;
+
+import org.jackzeng.Fibonacci;
+
+dialect  "mvel"
+
+rule "fibonacciRule"
+    when
+    f: Fibonacci(value == -1)
+    not ( Fibonacci(sequence == 1) )
+    then
+    insert(new Fibonacci(f.sequence - 1 ));
+    System.out.println("current recurse sequence:" + f.getSequence() );
+end

@@ -1,0 +1,18 @@
+package rulebase;
+
+import org.jackzeng.EntityWrapperNew;
+import org.jackzeng.LoanStatusNew;
+import org.jackzeng.RuleResult;
+
+dialect  "mvel"
+no-loop true
+
+rule "ruleBase"
+    when
+    $w : EntityWrapperNew( stringField == "String" || enumField == "未结清")
+    then
+    RuleResult fact = new RuleResult();
+    fact.setRuleName("ruleBase");
+    insert(fact);
+
+end

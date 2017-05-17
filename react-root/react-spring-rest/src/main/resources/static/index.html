@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React+Spring</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/toastr.min.css">
+</head>
+<body>
+    <div id="root" className="container"></div>
+
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/toastr.min.js"></script>
+
+    <script type="text/babel">
+
+        var Employee = React.createClass({
+            getInitialState: function () {
+                return {display:true};
+            },
+            handleDelete(){
+                var self = this;
+                $.ajax({
+                    url: self.props.employee._links.self.href,
+                    type: 'DELETE',
+                    success: function(result) {
+                        self.setState({display: false});
+                        toastr.info(self.props.employee.name + ' deleted success');
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                });
+            },
+            render:function () {
+                if(this.state.display == false) return null;
+                else return (
+                        <tr>
+                            <td>{this.props.employee.name}</td>
+                            <td>{this.props.employee.age}</td>
+                            <td>{this.props.employee.years}</td>
+                            <td>
+                                <button className="btn btn-info" onClick={this.handleDelete}>Delete</button>
+                            </td>
+                        </tr>
+                );
+            }
+        });
+
+        var EmployeeTable = React.createClass({
+            render: function () {
+                var rows = [];
+                this.props.employees.forEach(function (employee) {
+                    rows.push(<Employee employee={employee} />);
+                });
+                return (
+                    <table className="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th><th>Age</th><th>Years</th><th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {rows}
+                        </tbody>
+                    </table>
+                );
+            }
+        });
+
+        var EMPLOYEES = [
+            { name : 'Dog', age:100, years:5},
+            { name : 'Cat', age:88, years:10},
+            { name : 'Fish', age:77, years:12}
+        ];
+
+        var App = React.createClass({
+            loadEmployeesFromServer : function () {
+                var self = this;
+                $.ajax({
+                    url:"http://localhost:8080/api/employees"
+                }).then(function (data) {
+                    self.setState({employees:data._embedded.employees});
+                });
+            },
+            getInitialState: function () {
+                return {employees:[]};
+            },
+
+            componentDidMount: function () {
+                this.loadEmployeesFromServer();
+            },
+
+            render(){
+                return (<EmployeeTable employees={this.state.employees} />);
+            }
+        });
+
+        /*ReactDOM.render(
+                <EmployeeTable employees={EMPLOYEES} />,document.getElementById('root')
+        );*/
+        ReactDOM.render(
+            <App/>, document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

@@ -61,7 +61,12 @@
 		<artifactId>jackson-annotations</artifactId>
 		<version>${jackson.version}</version>
 	</dependency>
-    
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot</artifactId>
+        <version>1.5.2.RELEASE</version>
+    </dependency>
+
 </dependencies>
   
 </project>

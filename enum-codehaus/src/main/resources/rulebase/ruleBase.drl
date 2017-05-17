@@ -1,0 +1,19 @@
+package rulebase;
+
+import com.qf.Wrapper;
+import com.qf.LoanStatus;
+import com.qf.ResultCode;
+
+dialect  "mvel"
+no-loop true
+
+rule "ruleBase"
+    when
+    $w : Wrapper( stringField == "String" || enumField == LoanStatus.UNPAYED)
+    then
+    ResultCode fact = new ResultCode();
+    fact.setCode("123");
+    insert(fact);
+    System.out.println("I am fired");
+
+end

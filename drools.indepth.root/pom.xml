@@ -23,8 +23,15 @@
   	<module>kie-server-rest-commands</module>
     <module>kie-service-rest-api</module>
     <module>kie-service-spring-boot</module>
+    <module>enum-test</module>
+    <module>kie-enum-deserializer</module>
+      <module>kie-server-performance</module>
+
   </modules>
-  
+
+  <dependencies>
+
+  </dependencies>
 
   
 </project>

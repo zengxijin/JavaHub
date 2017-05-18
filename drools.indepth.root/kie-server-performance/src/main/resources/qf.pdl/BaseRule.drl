@@ -1,0 +1,29 @@
+package qf.pdl
+
+import pdl.bomentity.ThirdPartyBom;
+import pdl.ruleresult.RuleResult;
+import pdl.baseentity.Rule;
+import pdl.ruleresult.CreditResult;
+import java.util.List;
+
+
+rule "P_O001"
+
+    dialect "java"
+    no-loop true
+
+    when
+        // $pm : ThirdPartyBom($pm.basicFeature.age < 22 || $pm.basicFeature.age > 35)
+        $pm : ThirdPartyBom()
+        $cr : CreditResult()
+    then
+        RuleResult P_O001 = new RuleResult();
+        P_O001.setRuleName(Rule.P_O001);
+        P_O001.setRuleResult(false);
+
+        $cr.getHitRules().add(P_O001);
+
+        System.out.println("P_O001 is fired");
+
+end
+

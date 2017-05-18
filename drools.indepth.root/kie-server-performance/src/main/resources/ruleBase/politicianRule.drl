@@ -1,0 +1,40 @@
+package ruleBase;
+
+import org.jackzeng.politician.Politician;
+import org.jackzeng.politician.Hope;
+
+dialect  "mvel"
+
+rule "We have an honest Politician"
+    salience 10
+    when
+        exists( Politician( honest == true ) )
+    then
+        System.out.println("We get Honest Politician");
+        insertLogical( new Hope() );
+end
+
+rule "Hope Lives"
+    salience 10
+        when
+            exists( Hope() )
+        then
+            System.out.println("Hurrah!!! Democracy Lives");
+end
+
+rule "Corrupt the Honest"
+    when
+        politician : Politician( honest == true )
+        exists( Hope() )
+    then
+        System.out.println( "I'm an evil corporation and I have corrupted " + politician.getName() );
+        modify ( politician ) { honest = false };
+end
+
+rule "Hope is Dead"
+    when
+        not( Hope() )
+    then
+        System.out.println( "We are all Doomed!!! Democracy is Dead" );
+end
+

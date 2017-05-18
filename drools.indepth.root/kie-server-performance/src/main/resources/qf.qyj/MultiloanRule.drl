@@ -1,0 +1,87 @@
+package qf.qyj
+
+import qyj.bomentity.QyjMultiloanBom
+import common.entity.ProductName
+import qyj.ruleresult.RuleResult
+import qyj.baseentity.Rule
+import qyj.ruleresult.CreditResult
+import java.util.List
+import common.entity.CreditStatus
+import common.entity.LoanStatus
+
+
+rule "Q_R001"
+    dialect "mvel"
+    no-loop true
+
+    when
+        $qmb : QyjMultiloanBom($qmb.basicFeature.loanFeature.lastAppProduct == ProductName.QYJ
+            && $qmb.basicFeature.loanFeature.lastCreditStatus == CreditStatus.ISSUE
+            && $qmb.basicFeature.loanFeature.lastLoanStatus == LoanStatus.UNPAYED);
+        $cr : CreditResult();
+    then
+        RuleResult Q_R001 = new RuleResult();
+        Q_R001.setRuleResult(false);
+        Q_R001.setRuleName(Rule.Q_R001);
+
+        $cr.getHitRules().add(Q_R001);
+        //hitRules.add(Q_R001);
+        //$cr.setHitRules(hitRules);
+        $cr.setCreditResult(false);
+
+        System.out.println("Q_R001 is fired!");
+
+end
+
+
+rule "Q_R002"
+
+    dialect "java"
+    no-loop true
+    salience 20
+
+    when
+        $qmb : QyjMultiloanBom($qmb.basicFeature.loanFeature.lastAppProduct == ProductName.QYJ
+            && $qmb.basicFeature.loanFeature.lastCreditStatus == CreditStatus.ISSUE
+            && $qmb.basicFeature.loanFeature.lastLoanStatus == LoanStatus.PAYED
+            && $qmb.basicFeature.loanFeature.lastLoanMaxOverdueDays >= 30)
+        $cr : CreditResult();
+
+    then
+        RuleResult Q_R002 = new RuleResult();
+        Q_R002.setRuleResult(false);
+        Q_R002.setRuleName(Rule.Q_R002);
+
+        List<RuleResult> hitRules = $cr.getHitRules();
+        hitRules.add(Q_R002);
+        $cr.setHitRules(hitRules);
+        $cr.setCreditResult(false);
+
+        System.out.println("Q_R002 is fired!");
+end
+
+
+rule "Q_R003"
+
+    dialect "java"
+    no-loop true
+    salience 300
+
+    when
+        $qmb : QyjMultiloanBom($qmb.basicFeature.loanFeature.lastCreditResult == false
+            && $qmb.basicFeature.loanFeature.appDaysFromLast <= 30)
+        $cr : CreditResult()
+    then
+        RuleResult Q_R003 = new RuleResult();
+        Q_R003.setRuleResult(false);
+        Q_R003.setRuleName(Rule.Q_R003);
+
+        List<RuleResult> hitRules = $cr.getHitRules();
+        hitRules.add(Q_R003);
+        $cr.setHitRules(hitRules);
+        $cr.setCreditResult(false);
+
+        System.out.println("Q_R003 is fired!");
+
+end
+

@@ -1,0 +1,30 @@
+package qf.qyj
+
+import qyj.baseentity.BasicFeature
+import qyj.bomentity.QyjMultiloanBom
+import qyj.ruleresult.RuleResult
+import qyj.baseentity.Rule
+import qyj.ruleresult.CreditResult
+import java.util.List
+
+
+rule "Q_O001"
+
+    dialect "mvel"
+    no-loop true
+    salience 4000
+
+    when
+        $qmb : QyjMultiloanBom($qmb.basicFeature == null || $qmb.basicFeature.age < 22 || $qmb.basicFeature.age > 55);
+        $cr : CreditResult();
+    then
+        RuleResult Q_O001 = new RuleResult();
+        Q_O001.setRuleResult(false);
+        Q_O001.setRuleName(Rule.Q_O001);
+
+        $cr.getHitRules().add(Q_O001);
+        $cr.setCreditResult(false);
+
+        System.out.println("Q_O001 is fired!");
+end
+

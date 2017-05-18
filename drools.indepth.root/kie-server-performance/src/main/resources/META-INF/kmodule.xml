@@ -1,6 +1,26 @@
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- 测试规则 -->
     <kbase name="rulebase" default="false" eventProcessingMode="stream" equalsBehavior="identity">
         <ksession name="kie-performance-stateless" type="stateless" default="true" clockType="realtime"/>
         <ksession name="kie-performance-stateful" type="stateful" default="false" clockType="realtime"/>
     </kbase>
+
+    <!-- QYJ 复借规则-->
+    <kbase name="qyjMultiloan" packages="qf.qyj">
+        <ksession name="ks-qyj-multiloan-stateful" type="stateful" default="false" clockType="realtime"/>
+        <ksession name="ks-qyj-multiloan-stateless" type="stateless" default="true" clockType="realtime"/>
+    </kbase>
+
+    <!-- PayloadLoan 复借规则-->
+    <kbase name="pdlMultiloan" packages="qf.pdl">
+        <ksession name="ks-pdl-multiloan-stateful" type="stateful" default="false" clockType="realtime"/>
+        <ksession name="ks-pdl-multiloan-stateless" type="stateless" default="true" clockType="realtime"/>
+    </kbase>
+
+    <!-- PayloadLoan 三方规则-->
+    <kbase name="pdlThirdParty" packages="qf.pdl">
+        <ksession name="ks-pdl-thirdparty-stateful" type="stateful" default="false" clockType="realtime"/>
+        <ksession name="ks-pdl-thirdparty-stateless" type="stateless" default="true" clockType="realtime"/>
+    </kbase>
+
 </kmodule>

@@ -17,6 +17,7 @@ public class KieTestBase {
     private static final KieServices services   = KieServices.Factory.get();
     private static final KieContainer container = services.getKieClasspathContainer();
 
+
     public static int runTest(String sessionName, List<Object> objects) throws Exception {
         //激活了多少规则
         int firedRules = 0;

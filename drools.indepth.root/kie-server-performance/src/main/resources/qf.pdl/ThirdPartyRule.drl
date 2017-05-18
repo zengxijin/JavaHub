@@ -1,0 +1,149 @@
+package qf.pdl
+
+import pdl.bomentity.ThirdPartyBom
+import pdl.ruleresult.CreditResult
+import pdl.ruleresult.RuleResult
+import pdl.baseentity.Rule
+
+
+rule "P_T004"
+    no-loop true
+
+    when
+        $td : ThirdPartyBom(
+               $td.intersectionFeature.yysDetailLoanFeature.call2wayRel1RcrdSumJ90d <= 0
+            && $td.intersectionFeature.yysDetailLoanFeature.call2wayRel1RcrdSumJ90d <= 0)
+        $cr : CreditResult()
+    then
+        RuleResult P_T004 = new RuleResult();
+        P_T004.setRuleResult(false);
+        P_T004.setRuleName(Rule.P_T004);
+
+        $cr.setCreditResult(false);
+        $cr.getHitRules().add(P_T004);
+
+        System.out.println("P_T004 is fired");
+end
+
+
+rule "P_T005"
+    no-loop true
+
+
+    when
+        $td : ThirdPartyBom(
+               $td.yysDetailFeature.call2wayTotRcrdSumJ30d <= 0
+            || $td.yysDetailFeature.Sms2wayTotRcrdSumJ30d <= 0
+            || $td.yysDetailFeature.Net2wayTotRcrdSumJ30d <= 0)
+        $cr : CreditResult()
+    then
+        RuleResult P_T005  = new RuleResult();
+        P_T005.setRuleResult(false);
+        P_T005.setRuleName(Rule.P_T005);
+
+        $cr.setCreditResult(false);
+        $cr.getHitRules().add(P_T005);
+
+        System.out.println("P_T005 is fired");
+end
+
+
+rule "P_T006"
+    no-loop true
+    
+
+    when
+        $td : ThirdPartyBom($td.yysReportFeature.reliabilityDays <= 60)
+        $cr : CreditResult()
+    then
+        RuleResult P_T006  = new RuleResult();
+        P_T006.setRuleResult(false);
+        P_T006.setRuleName(Rule.P_T006);
+
+        $cr.setCreditResult(false);
+        $cr.getHitRules().add(P_T006);
+
+        System.out.println("P_T006 is fired");
+
+end
+
+
+rule "P_T007"
+    no-loop true
+    
+
+    when
+        $td : ThirdPartyBom($td.yysReportFeature.checkIdCard == false
+            || $td.yysReportFeature.checkName == false)
+        $cr : CreditResult()
+    then
+        RuleResult P_T007  = new RuleResult();
+        P_T007.setRuleResult(false);
+        P_T007.setRuleName(Rule.P_T007);
+
+        $cr.setCreditResult(false);
+        $cr.getHitRules().add(P_T007);
+
+        System.out.println("P_T007 is fired");
+
+end
+
+
+rule "P_T008"
+    no-loop true
+    
+
+    when
+        $td : ThirdPartyBom($td.yysDetailFeature.juxinliDetailEmptyOrNot == true)
+        $cr : CreditResult()
+    then
+        RuleResult P_T008  = new RuleResult();
+        P_T008.setRuleResult(false);
+        P_T008.setRuleName(Rule.P_T008);
+
+        $cr.setCreditResult(false);
+        $cr.getHitRules().add(P_T008);
+
+        System.out.println("P_T008 is fired");
+
+end
+
+
+rule "P_T009"
+    no-loop true
+    
+
+    when
+        $td : ThirdPartyBom($td.zhimaFeature.score == -1
+            || $td.zhimaFeature.score <= 600)
+        $cr : CreditResult()
+    then
+        RuleResult P_T009  = new RuleResult();
+        P_T009.setRuleResult(false);
+        P_T009.setRuleName(Rule.P_T009);
+
+        $cr.setCreditResult(false);
+        $cr.getHitRules().add(P_T009);
+
+        System.out.println("P_T009 is fired");
+end
+
+rule "P_T013"
+    no-loop true
+    
+
+    when
+        $td : ThirdPartyBom($td.yysDetailFeature.call2wayTotUnqnSumJ90d < 30)
+        $cr : CreditResult()
+    then
+        RuleResult P_T013  = new RuleResult();
+        P_T013.setRuleResult(false);
+        P_T013.setRuleName(Rule.P_T013);
+
+        $cr.setCreditResult(false);
+        $cr.getHitRules().add(P_T013);
+
+        System.out.println("P_T013 is fired");
+
+end
+

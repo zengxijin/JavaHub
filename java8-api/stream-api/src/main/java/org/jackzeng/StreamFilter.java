@@ -27,6 +27,5 @@ public class StreamFilter {
         results2.forEach(System.out::println);
 
 
-
     }
 }

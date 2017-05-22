@@ -1,0 +1,21 @@
+package autorule;
+
+import org.jackzeng.autobean.Bean1
+import org.jackzeng.autobean.RuleResult;
+
+
+dialect  "mvel"
+
+rule "autorule1"
+    when
+    $b1 : Bean1(field1 == "String",field2 >= 100,field3 == true,fild4 == 100)
+    then
+    RuleResult result = new RuleResult();
+    result.setDescription("autorule1 fired");
+    result.setRuleName("autorule1");
+    result.setRuleResult(true);
+    result.setScore(100);
+
+    System.out.println(result.toString());
+
+end

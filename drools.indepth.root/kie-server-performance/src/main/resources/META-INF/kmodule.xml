@@ -23,4 +23,10 @@
         <ksession name="ks-pdl-thirdparty-stateless" type="stateless" default="true" clockType="realtime"/>
     </kbase>
 
+    <!-- 自动规则测试 -->
+    <kbase name="autoRuleBase" packages="autorule">
+        <ksession name="autorule-stateful" type="stateful" default="false" clockType="realtime"/>
+        <ksession name="autorule-stateless" type="stateless" default="true" clockType="realtime"/>
+    </kbase>
+
 </kmodule>

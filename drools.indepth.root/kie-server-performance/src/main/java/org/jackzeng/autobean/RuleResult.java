@@ -1,16 +1,13 @@
-package pdl.ruleresult;
-
-
-import pdl.baseentity.Rule;
+package org.jackzeng.autobean;
 
 /**
- * @author weijiexie
+ * Created by XijinZeng on 2017/5/22.
  */
 public class RuleResult {
 
     private boolean ruleResult;
 
-    private Rule ruleName;
+    private String ruleName;
 
     private String description;
 
@@ -24,11 +21,11 @@ public class RuleResult {
         this.ruleResult = ruleResult;
     }
 
-    public Rule getRuleName() {
+    public String getRuleName() {
         return ruleName;
     }
 
-    public void setRuleName(Rule ruleName) {
+    public void setRuleName(String ruleName) {
         this.ruleName = ruleName;
     }
 
@@ -48,5 +45,8 @@ public class RuleResult {
         this.score = score;
     }
 
-
+    public String toString() {
+        return "[ruleName=" + ruleName + " ruleResult=" + ruleResult +
+                " score=" + score + " description=" + description + "]";
+    }
 }

@@ -1,0 +1,31 @@
+$ ps -e -o 'pid,comm,args,pcpu,rsz,vsz,stime,user,uid' | grep oracle |  sort -nrk5
+　　其中rsz为实际内存，上例实现按内存排序，由大到小
+
+部署之前
+ps -e -o 'pid,comm,args,pcpu,rsz,vsz,stime,user,uid' | grep java |  sort -nrk5
+  200 java            /opt/jdk/bin/java -D[Server  0.1 1527056 8198656 May05 root      0
+  124 java            /opt/jdk/bin/java -D[Proces  0.1 76948 4636396 May05 root        0
+  146 java            /opt/jdk/bin/java -D[Host C  0.1 580888 6397256 May05 root       0
+  
+  200 java            /opt/jdk/bin/java -D[Server  0.2 1535424 8232512 May05 root      0
+  124 java            /opt/jdk/bin/java -D[Proces  0.1 76948 4636396 May05 root        0
+  146 java            /opt/jdk/bin/java -D[Host C  0.1 580888 6397256 May05 root       0
+
+  200 java            /opt/jdk/bin/java -D[Server  0.2 1536784 8236624 May05 root      0
+  124 java            /opt/jdk/bin/java -D[Proces  0.1 76948 4636396 May05 root        0
+  146 java            /opt/jdk/bin/java -D[Host C  0.1 580888 6397256 May05 root       0
+  
+  第一次1000个自动规则
+  200 java            /opt/jdk/bin/java -D[Server  0.2 1695908 8286988 May05 root      0
+  124 java            /opt/jdk/bin/java -D[Proces  0.1 81584 4636396 May05 root        0
+  146 java            /opt/jdk/bin/java -D[Host C  0.1 580888 6397256 May05 root       0
+  
+  再次运行1000个自动规则
+  200 java            /opt/jdk/bin/java -D[Server  0.2 1696540 8286988 May05 root      0
+  124 java            /opt/jdk/bin/java -D[Proces  0.1 83632 4636396 May05 root        0
+  146 java            /opt/jdk/bin/java -D[Host C  0.1 580888 6397256 May05 root       0
+  
+  运行完其他的业务规则，业务规则不多
+  200 java            /opt/jdk/bin/java -D[Server  0.2 1733808 8286988 May05 root      0
+  124 java            /opt/jdk/bin/java -D[Proces  0.1 83640 4636396 May05 root        0
+  146 java            /opt/jdk/bin/java -D[Host C  0.1 580888 6397256 May05 root       0

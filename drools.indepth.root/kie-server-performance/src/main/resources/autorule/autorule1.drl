@@ -4,6 +4,7 @@ import org.jackzeng.autobean.Bean1
 import org.jackzeng.autobean.RuleResult;
 
 
+
 dialect  "mvel"
 
 rule "autorule1"
@@ -19,3 +20,4 @@ rule "autorule1"
     System.out.println(result.toString());
 
 end
+

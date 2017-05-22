@@ -2,6 +2,7 @@ package org.jackzeng.autorule.test;
 
 import org.jackzeng.KieTestBase;
 import org.jackzeng.autobean.Bean1;
+import org.jackzeng.autobean.Bean2;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -20,6 +21,16 @@ public class AutoRuleTest {
 
         System.out.println(
                 KieTestBase.runTest("autorule-stateful", Arrays.asList(bean1))
+        );
+
+        Bean2 bean2 = new Bean2();
+        bean2.setField3("String");
+        bean2.setField4(102.1d);
+        bean2.setField5(true);
+        bean2.setFild6(100);
+
+        System.out.println(
+                KieTestBase.runTest("autorule-stateful", Arrays.asList(bean2))
         );
 
     }

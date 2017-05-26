@@ -3,21 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jackzeng</groupId>
-  <artifactId>java8-api</artifactId>
+  <artifactId>rpc-framework</artifactId>
   <version>1.0-SNAPSHOT</version>
-
-  <modules>
-    <module>stream-api</module>
-  </modules>
-
   <packaging>pom</packaging>
 
-  <name>java8-api</name>
+  <modules>
+    <module>dubbo</module>
+  </modules>
+
+  <name>rpc-framework</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
 
 </project>

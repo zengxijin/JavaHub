@@ -12,6 +12,9 @@ public class Fibonacci {
         this.value = -1;
     }
 
+    public Fibonacci() {
+    }
+
     public int getSequence() {
         return sequence;
     }

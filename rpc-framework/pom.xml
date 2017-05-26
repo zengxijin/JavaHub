@@ -9,6 +9,8 @@
 
   <modules>
     <module>dubbo</module>
+    <module>thrift</module>
+    <module>protobuf</module>
   </modules>
 
   <name>rpc-framework</name>

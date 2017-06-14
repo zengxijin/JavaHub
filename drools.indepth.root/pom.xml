@@ -27,6 +27,7 @@
     <module>kie-enum-deserializer</module>
       <module>kie-server-performance</module>
       <module>kie-ruleflow</module>
+      <module>kie-exec-server-client</module>
 
   </modules>
 

@@ -49,11 +49,13 @@ public class XStream {
                 serverCfg.getPassword()
         );
 
+        config.set
+
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
         RuleServicesClient ruleServicesClient = client.getServicesClient(RuleServicesClient.class);
 
-
-        ServiceResponse<String> response = ruleServicesClient.executeCommands(container, payload);
+        ServiceResponse<String> response = client.executeCommands(container, payload);
+        System.out.println(response);
 
         return response.getResult();
     }

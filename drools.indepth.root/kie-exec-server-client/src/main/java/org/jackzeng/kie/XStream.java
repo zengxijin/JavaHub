@@ -10,7 +10,6 @@ import org.kie.server.api.model.ServiceResponse;
 import org.kie.server.client.KieServicesClient;
 import org.kie.server.client.KieServicesConfiguration;
 import org.kie.server.client.KieServicesFactory;
-import org.kie.server.client.RuleServicesClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,15 +48,17 @@ public class XStream {
                 serverCfg.getPassword()
         );
 
-        config.set
+
 
         KieServicesClient client = KieServicesFactory.newKieServicesClient(config);
-        RuleServicesClient ruleServicesClient = client.getServicesClient(RuleServicesClient.class);
+        //RuleServicesClient ruleServicesClient = client.getServicesClient(RuleServicesClient.class);
 
         ServiceResponse<String> response = client.executeCommands(container, payload);
-        System.out.println(response);
+        if(response.getType() == ServiceResponse.ResponseType.SUCCESS){
+            return response.getResult();
+        }
 
-        return response.getResult();
+        return response.getMsg();
     }
 
 }

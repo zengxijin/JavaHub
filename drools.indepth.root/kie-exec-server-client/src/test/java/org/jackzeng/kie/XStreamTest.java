@@ -1,7 +1,9 @@
 package org.jackzeng.kie;
 
 import com.qf.MyBean;
+import org.junit.Test;
 
+import java.nio.channels.SelectionKey;
 import java.util.Arrays;
 
 /**
@@ -25,5 +27,13 @@ public class XStreamTest {
 
         String res = stream.execute(cfg, "client-test1.1", payload);
         System.out.println(res);
+    }
+
+    @Test
+    public void test() throws Exception {
+        Integer s = SelectionKey.OP_ACCEPT;
+        System.out.println(Integer.toBinaryString(SelectionKey.OP_ACCEPT|SelectionKey.OP_CONNECT
+                |SelectionKey.OP_WRITE|SelectionKey.OP_READ));
+        System.out.println(Integer.toBinaryString(1 << 30));
     }
 }

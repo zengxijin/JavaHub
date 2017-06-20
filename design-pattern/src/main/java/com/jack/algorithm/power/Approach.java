@@ -5,6 +5,7 @@ package com.jack.algorithm.power;
  */
 public class Approach {
 
+    //二分法求近似解，任意次根
     public static double xsquare(double value,int n){
         double left = 0;
         double right = value;

@@ -11,6 +11,7 @@
     <module>dubbo</module>
     <module>thrift</module>
     <module>protobuf</module>
+      <module>hessian</module>
   </modules>
 
   <name>rpc-framework</name>

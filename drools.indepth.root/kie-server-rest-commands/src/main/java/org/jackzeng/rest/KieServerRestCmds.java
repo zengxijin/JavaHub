@@ -34,6 +34,7 @@ public class KieServerRestCmds {
 		}
 		return kieCommands;
 	}
+
 	
 	
 	public static String getCmdsInJson(Command<?> ...cmd){

@@ -11,7 +11,8 @@
     <module>dubbo</module>
     <module>thrift</module>
     <module>protobuf</module>
-      <module>hessian</module>
+    <module>hessian</module>
+    <module>rabbitmq-rpc</module>
   </modules>
 
   <name>rpc-framework</name>
@@ -19,6 +20,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.version>1.8</maven.compiler.version>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
 </project>

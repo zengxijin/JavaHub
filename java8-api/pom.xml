@@ -8,6 +8,7 @@
 
   <modules>
     <module>stream-api</module>
+    <module>lambda-performance</module>
   </modules>
 
   <packaging>pom</packaging>

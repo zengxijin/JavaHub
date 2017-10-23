@@ -29,8 +29,7 @@ public class ExcelMerge {
         File fa[] = f.listFiles();
 
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < fa.length; i++) {
-            File fs = fa[i];
+        for (File fs : fa) {
             if (!fs.isDirectory()) {
                 //System.out.println(fs.getName());
                 list.add(fs.getName());
@@ -70,24 +69,32 @@ public class ExcelMerge {
                     rowCount = 0;
                 }
 
+                ArrayList<Label> rowBuffer = new ArrayList<>();
                 String str = "";
-                for(int j=0; j < sheet.getColumns(); j++){
-                    Cell cell = sheet.getCell(j,i);
+                for (int j = 0; j < sheet.getColumns(); j++) {
+                    Cell cell = sheet.getCell(j, i);
 
                     String content = cell.getContents();
-                    if (content.startsWith("总笔数") || content.contains("交易金额") || content.contains("结算金额")) {
-                        break;
-                        //无效，跳过
-                    } else {
-                        Label label = new Label(j, rowCount, content);
-                        sheetOut.addCell(label);
-                        str = str + content + "\t";
-                    }
 
+                    Label label = new Label(j, rowCount, content);
+                    rowBuffer.add(label);
+                    //sheetOut.addCell(label);
+                    str = str + content + "\t";
                 }
 
-                rowCount++;
-                System.out.println(i+ " " + str);
+                if (str.length() == 0 || str.trim().length() == 0 ||
+                        str.startsWith("总笔数") || str.contains("交易金额") || str.contains("结算金额")) {
+                    System.out.println("不合理数据：" + str);
+                } else {
+                    for (Label col : rowBuffer) {
+                        sheetOut.addCell(col);
+                    }
+
+                    rowCount++;
+
+                    System.out.println(rowCount+ " " + str);
+                }
+
             }
 
             wb.close();

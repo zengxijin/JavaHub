@@ -4,13 +4,14 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import jxl.write.*;
-import jxl.write.Number;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ import java.util.List;
 public class ExcelMerge {
     public static void main(String[] args) throws IOException, BiffException, WriteException {
 
-        read(getFiles());
+        merge(getFiles());
 
     }
 
@@ -39,7 +40,7 @@ public class ExcelMerge {
         return list;
     }
 
-    private static void read(List<String> files) throws IOException, BiffException, WriteException {
+    private static void merge(List<String> files) throws IOException, BiffException, WriteException {
 
         // 打开文件
         WritableWorkbook book = Workbook.createWorkbook(new File(
@@ -52,13 +53,22 @@ public class ExcelMerge {
 
         for (String fileName : files) {
             //String fileName = "/Users/zengxijin/e/MB巴南万达店1709POS-09.xls";
-            File file = new File("/Users/zengxijin/e/" + fileName);//根据文件名创建一个文件对象
-            Workbook wb = Workbook.getWorkbook(file);//从文件流中取得Excel工作区对象
-            Sheet sheet = wb.getSheet(0);//从工作区中取得页，取得这个对象的时候既可以用名称来获得，也可以用序号。
+            File file = new File("/Users/zengxijin/e/" + fileName); //根据文件名创建一个文件对象
+            Workbook wb = Workbook.getWorkbook(file); //从文件流中取得Excel工作区对象
+            Sheet sheet = wb.getSheet(0); //从工作区中取得页，取得这个对象的时候既可以用名称来获得，也可以用序号。
 
 
             for(int i=0; i < sheet.getRows(); i++){
+                //抛弃前4行数据
                 if (i < 4) continue;
+
+                //超过最大行数
+                if (rowCount > 60000) {
+                    sheetOut = book.createSheet("sheet" + (++sheetCount), sheetCount);
+                    sheetCount++;
+                    //重置行统计
+                    rowCount = 0;
+                }
 
                 String str = "";
                 for(int j=0; j < sheet.getColumns(); j++){
@@ -69,15 +79,6 @@ public class ExcelMerge {
                         break;
                         //无效，跳过
                     } else {
-                        //超过最大行数
-                        if (rowCount > 60000) {
-                            sheetOut = book.createSheet("sheet" + (++sheetCount), sheetCount);
-                            sheetCount++;
-                            //重置行统计
-                            rowCount = 0;
-
-                        }
-
                         Label label = new Label(j, rowCount, content);
                         sheetOut.addCell(label);
                         str = str + content + "\t";

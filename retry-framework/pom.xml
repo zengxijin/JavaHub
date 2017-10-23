@@ -2,33 +2,26 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.jack</groupId>
-  <artifactId>design-pattern</artifactId>
-  <version>1.0</version>
+  <groupId>org.jackzeng</groupId>
+  <artifactId>retry-framework</artifactId>
+  <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>design-pattern</name>
+  <name>retry-framework</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.version>1.8</maven.compiler.version>
+    <!--<maven.compiler.target>1.8</maven.compiler.target>-->
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
-
-    <dependency>
-      <groupId>org.jxls</groupId>
-      <artifactId>jxls-jexcel</artifactId>
-      <version>1.0.6</version>
-    </dependency>
-
   </dependencies>
 </project>

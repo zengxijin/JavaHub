@@ -18,8 +18,10 @@ public class MyScheduler {
     @Autowired
     AsyncTask task;
 
-    @Scheduled(cron = "0/10 0 * * * ?")
+    @Scheduled(cron = "5/10 * * * * ?")
     public void scheduler(){
+
+        System.out.println("start scheduler");
 
         RpcMessage<String> message = RpcMessage.<String>builder()
                 .msgId("aa")

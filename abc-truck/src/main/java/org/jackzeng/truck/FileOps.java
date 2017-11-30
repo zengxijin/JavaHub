@@ -85,7 +85,11 @@ public class FileOps {
     public static void writeFile(String fileName) throws IOException {
         LocalDateTime now = LocalDateTime.now();
         Path path = Paths.get(fileName);
-        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
+        Files.deleteIfExists(path);
+
+        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE_NEW,StandardOpenOption.APPEND)) {
+
             writer.write(now.toString());
             writer.newLine();
         }

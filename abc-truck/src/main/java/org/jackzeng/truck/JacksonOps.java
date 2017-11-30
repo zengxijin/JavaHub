@@ -70,7 +70,7 @@ public class JacksonOps {
         }
     }
 
-    class LongDeserializer extends com.fasterxml.jackson.databind.JsonDeserializer<Long> {
+    class LongDeserializer extends JsonDeserializer<Long> {
         @Override
         public Long deserialize(com.fasterxml.jackson.core.JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
             String key = "$numberLong";
@@ -86,7 +86,7 @@ public class JacksonOps {
         }
     }
 
-    class BigDecimalDeserializer extends com.fasterxml.jackson.databind.JsonDeserializer<BigDecimal> {
+    class BigDecimalDeserializer extends JsonDeserializer<BigDecimal> {
         @Override
         public BigDecimal deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
             String key = "$numberLong";

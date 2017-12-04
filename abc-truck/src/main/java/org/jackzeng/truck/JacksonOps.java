@@ -3,12 +3,15 @@ package org.jackzeng.truck;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,7 +29,11 @@ public class JacksonOps {
     public void gsonTest() throws Exception {
         String json = getJson("D:\\juxinli_detail.txt");
         //Gson gson = GsonUtil.getGson();
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper(){
+            {
+                setAnnotationIntrospector(new DisablingCustomDeserializerIntrospector());
+            }
+        };
         SimpleModule module = new SimpleModule();
         module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
         module.addDeserializer(Long.class, new LongDeserializer());
@@ -48,6 +55,19 @@ public class JacksonOps {
         private Long count;
         private BigDecimal money;
         private String string;
+    }
+
+    //这个配置可以忽略某些bean中自定义的deserializer的注解配置
+    //否则可能会出现mapper配置的deserializer和注解配置的deserializer发生冲突
+    class DisablingCustomDeserializerIntrospector extends JacksonAnnotationIntrospector {
+        @Override
+        public boolean isAnnotationBundle(Annotation ann) {
+            if (ann.annotationType().equals(JsonDeserialize.class)) {
+                return true;
+            } else {
+                return super.isAnnotationBundle(ann);
+            }
+        }
     }
 
     class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {

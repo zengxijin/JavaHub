@@ -27,11 +27,15 @@ public class CommandExecutor {
     }
 
     public List<OrientVertex> execNoTx(String sql) {
+        return execNoTx(sql, null);
+    }
+
+    public List<OrientVertex> execNoTx(String sql, Object... args) {
         OrientGraphNoTx graph = factory.getNoTx();
         try {
-            return wrapResult(
-                    graph.command(new OCommandSQL(sql)).execute()
-            );
+            OrientDynaElementIterable iterable = (args != null && args.length > 0) ?
+                    graph.command(new OCommandSQL(sql)).execute(args) : graph.command(new OCommandSQL(sql)).execute();
+            return wrapResult(iterable);
         } finally {
             //return the remote connection to pool
             graph.shutdown();
@@ -59,27 +63,12 @@ public class CommandExecutor {
         }
     }
 
-    public ResponseContext execNoTxResponse(String sql, boolean isFetchAll) {
-        OrientGraphNoTx graph = factory.getNoTx();
-        OCommandSQL oCommandSQL = null;
-        if (!isFetchAll) {
-            oCommandSQL = new OCommandSQL(sql);
-        } else {
-            //Fetches recursively the entire tree
-            oCommandSQL = new OCommandSQL(sql).setFetchPlan("*:-1");
-        }
-
-        return ResponseContext.builder()
-                .currentNoTxConnection(graph)
-                .iterator(graph.command(oCommandSQL).execute())
-                .build();
-    }
-
-
     private List<OrientVertex> wrapResult(OrientDynaElementIterable iterable) {
         List<OrientVertex> vertexList = new ArrayList<>();
         iterable.forEach(e -> vertexList.add((OrientVertex) e));
 
         return vertexList;
     }
+
+
 }

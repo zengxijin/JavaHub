@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class DBFactoryTest {
 
-    String url = "remote:ip:2424/kg2";
-    String sql = "select from phone where phone ='13820999729' or phone='13265447240'";
-    CommandExecutor commandExecutor = new CommandExecutor(DBFactory.instance(url,"root","aaa"));
+    String url = "remote:10.18.19.90:2424/kg2";
+    String sql = "select from phone where phone ='18139772339' or phone='15901234557'";
+    CommandExecutor commandExecutor = new CommandExecutor(DBFactory.instance(url,"root","rainbowpass1119"));
 
     @Test
     public void instanceTest() throws Exception {
@@ -48,7 +48,7 @@ public class DBFactoryTest {
     }
 
     String traverseSql = "select traversedVertex(-1, 9), $path, $depth from " +
-            "(traverse * from (select from phone where phone = '13820999729' or phone = '15115796065') while $depth < 9 strategy BREADTH_FIRST) " +
+            "(traverse * from (select from phone where phone = '18139772339' or phone = '15901234557') while $depth < 9 strategy BREADTH_FIRST) " +
             "where @class = 'Loan' and $depth > 0 ";
 
     @Test
@@ -63,5 +63,27 @@ public class DBFactoryTest {
                 }
         );
 
+    }
+
+    String testSql = "select traversedVertex(-1, 9), $path, $depth from (traverse * from (select from phone where phone = '15846886222') while $depth < 9 strategy BREADTH_FIRST) " +
+            "where @class = 'Loan' and $depth > 0 and not ($path like '%WORK%') and not ($path like '%CALL%') and $path like '%OWN%'";
+
+    String testPreparedSql = "select traversedVertex(-1, 9), $path, $depth from (traverse * from (select from phone where phone =?) while $depth < 9 strategy BREADTH_FIRST) " +
+            "where @class = 'Loan' and $depth > 0 and not ($path like '%WORK%') and not ($path like '%CALL%') and $path like '%OWN%'";
+
+    @Test
+    public void sqlTest() throws Exception {
+        List<OrientVertex> vertexList = commandExecutor.execNoTx(testSql);
+        vertexList.forEach(v -> {
+            System.out.println((String) v.getProperty("$path"));
+        });
+    }
+
+    @Test
+    public void preparedSqlTest() throws Exception {
+        List<OrientVertex> vertexList = commandExecutor.execNoTx(testPreparedSql,"15846886222");
+        vertexList.forEach(v -> {
+            System.out.println((String) v.getProperty("$path"));
+        });
     }
 }

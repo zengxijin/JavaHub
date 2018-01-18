@@ -3,7 +3,9 @@ package org.jackzeng.orientdb;
 import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.sql.query.OSQLNonBlockingQuery;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.concurrent.Future;
 
@@ -11,16 +13,19 @@ import java.util.concurrent.Future;
  * @author zengxj
  * @create 2017/12/28
  */
+@AllArgsConstructor
 public class AsyncCommandExecutor {
 
     @Getter
+    @Setter
     private OrientGraphFactory factory;
 
-    public void exec() {
+    public Future exec(String sql) {
         int resultCount = 0;
+
         Future future = factory.getDatabase().command(
                 new OSQLNonBlockingQuery<Object>(
-                        "SELECT FROM Animal WHERE name = 'Gipsy'",
+                        sql,
                         new OCommandResultListener() {
 
                             /**
@@ -49,6 +54,8 @@ public class AsyncCommandExecutor {
                         }
                 )
         ).execute();
+
+        return future;
 
     }
 }

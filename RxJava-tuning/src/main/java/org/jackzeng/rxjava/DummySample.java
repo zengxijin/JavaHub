@@ -8,7 +8,7 @@ import io.reactivex.Flowable;
  */
 public class DummySample {
     public static void main(String[] args) {
-
+        justTest();
     }
 
     public static void justTest() {

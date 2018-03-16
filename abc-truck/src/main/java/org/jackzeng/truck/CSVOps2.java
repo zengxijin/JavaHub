@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,18 +16,17 @@ import java.util.List;
  * @author zengxj
  * @create 2017/11/16
  */
-public class CSVOps {
+public class CSVOps2 {
     public static void main(String[] args) throws IOException {
-        String filePath = "C:\\Users\\zengxj\\Documents\\WeChat Files\\zengxijin\\Files\\11月MC宜家(1)\\MC宜家\\";
+        String filePath = "C:\\Users\\zengxj\\Desktop\\中行POS明细清单\\中街店\\data\\";
 
         List<String> files = getFiles(filePath);
 
-        String outFile = "csvMerge.csv";
+        String outFile = "csvMerge" + System.currentTimeMillis() + ".csv";
 
         CsvWriter writer = new CsvWriter(outFile,',', Charset.forName("GBK"));
-        String[] headers = {"序号","终端编号","交易时间","卡号","交易金额","红利收入","红利支出","小费","手续费","分期付款手续费","净收金额","交易检索号","交易类型","交易日期"};
+        String[] headers = {"终端号","批号","交易卡号","交易日期","交易时间","交易金额","手续费","结算金额","授权码","交易码","分期","卡别","参考号","原始文件名"};
         writer.writeRecord(headers);
-
         files.forEach(file -> {
             System.out.println(file);
 
@@ -44,11 +44,25 @@ public class CSVOps {
                 while (csvReader.readRecord()) {
                     // 读一整行
                     String line = csvReader.getRawRecord();
-                    if (line == null || line.contains("序号") || line.contains("小计") || line.contains("合计") || line.contains("您通过")) {
+                    System.out.println(line);
+                    if (line == null || line.contains("序号") || line.contains("小计") || line.contains("合计") || line.contains("您通过")
+                            || line.contains("终端号")) {
                         System.out.println("忽略：" + line);
                     } else {
-                        String[] content = line.split("\\,");
-                        writer.writeRecord(content);
+                        String[] content = line.split(" ");
+                        String[] contentNew = new String[14];
+                        int j = 0;
+                        for (int i=0; i < content.length; i++) {
+                            if (!content[i].equals("")) {
+                                contentNew[j] = content[i];
+                                j++;
+                            }
+                        }
+
+                        if (j == 13) {
+                            contentNew[13] = file;
+                            writer.writeRecord(contentNew);
+                        }
                     }
                 }
 

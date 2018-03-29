@@ -1,0 +1,28 @@
+(1) default-distributed-db-config.json
+需要配置节点的角色
+
+(2) hazelcast.xml
+需要配置network的tcp-ip节点的信息和节点的ip信息
+
+(3) orientdb-server-config.xml
+这里的配置OHazelcastPlugin需要启动
+需要增加节点nodeName, 对应default-distributed-db-config.json节点配置的名称
+
+mv default-distributed-db-config.json default-distributed-db-config.json.back & mv hazelcast.xml hazelcast.xml.back & mv orientdb-server-config.xml orientdb-server-config.xml.back
+mv B_default-distributed-db-config.json default-distributed-db-config.json & mv B_hazelcast.xml hazelcast.xml & mv B_orientdb-server-config.xml orientdb-server-config.xml
+mv C_default-distributed-db-config.json default-distributed-db-config.json & mv C_hazelcast.xml hazelcast.xml & mv C_orientdb-server-config.xml orientdb-server-config.xml
+
+在master操作：
+connect remote:192.168.56.103 root zengxijin123
+create database remote:192.168.56.103/testDB root zengxijin123 plocal
+{db=testDB}> create class Artist
+{db=testDB}> insert into Artist (id, name, age) values (01,'sammy', 35)
+{db=testDB}> select id, age, name from Artist
+
+在slave操作：
+connect remote:192.168.56.103/testDB root zengxijin123
+insert into Artist (id, name, age) values (02,'tom', 40)
+
+connect remote:192.168.56.103/kg1 root zengxijin123
+
+select * from phone limit 10

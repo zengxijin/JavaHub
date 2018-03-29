@@ -16,7 +16,7 @@ dependencies {
             "com.orientechnologies:orientdb-graphdb:2.2.23",
             "com.orientechnologies:orientdb-client:2.2.23",
             "com.orientechnologies:orientdb-lucene:2.2.23",
-            "com.orientechnologies:orientdb-enterprise:2.1.25",
+            "com.orientechnologies:orientdb-enterprise:2.2.23",
             "com.tinkerpop.blueprints:blueprints-core:2.6.0",
             "org.projectlombok:lombok:1.16.18"
 

@@ -1,9 +1,6 @@
 package org.jackzeng;
 
-import org.neo4j.driver.v1.AuthTokens;
-import org.neo4j.driver.v1.Config;
-import org.neo4j.driver.v1.Driver;
-import org.neo4j.driver.v1.GraphDatabase;
+import org.neo4j.driver.v1.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,5 +19,33 @@ public class PooledDriver {
                 .withConnectionAcquisitionTimeout(2, TimeUnit.MINUTES)
                 .withConnectionTimeout(2, TimeUnit.SECONDS)
                 .toConfig());
+
+        addCloseHook();
+    }
+
+    public Session newSession() {
+        return driver.session();
+    }
+
+    public Session newReadonlySession() {
+        return driver.session(AccessMode.READ);
+    }
+
+    /**
+     * add hook to pooled driver when JVM shutdown and release the resources
+     */
+    private void addCloseHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                super.run();
+
+                if (driver != null) {
+                    driver.close();
+                    System.out.println("PooledDriver is closed");
+                }
+            }
+        });
+
     }
 }

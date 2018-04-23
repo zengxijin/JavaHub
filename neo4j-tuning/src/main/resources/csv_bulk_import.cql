@@ -1,4 +1,5 @@
-export FILEPATH=file:///Users/nicolewhite/Consumer_Complaints.csv
+//first you need to move the file to {NEO_HOME}/import
+export FILEPATH=file:///Consumer_Complaints.csv
 
 // Complaints, companies, responses.
 
@@ -25,6 +26,7 @@ MERGE (response:Response { name: UPPER(line.`Company response to consumer`) })
 
 CREATE (complaint)-[:AGAINST]->(company)
 CREATE (response)-[r:TO]->(complaint)
+CREATE (company)-[:HAVE]->(response) //new added
 
 SET r.timely = CASE line.`Timely response?` WHEN 'Yes' THEN true ELSE false END,
     r.disputed = CASE line.`Consumer disputed?` WHEN 'Yes' THEN true ELSE false END

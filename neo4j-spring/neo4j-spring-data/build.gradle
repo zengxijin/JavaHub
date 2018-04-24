@@ -1,0 +1,21 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter',
+            "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.boot:spring-boot-starter-data-neo4j",
+            rootProject.ext.dependencies["guava"]
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}

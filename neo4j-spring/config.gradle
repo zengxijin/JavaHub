@@ -1,0 +1,18 @@
+ext {
+    springBootVersion = "2.0.1.RELEASE"
+    swaggerVersion = "1.5.18"
+    springfoxSwaggerVersion = "2.6.0"
+
+    dependencies = [
+            "neo4j-driver": "org.neo4j.driver:neo4j-java-driver:1.5.0",
+            "lombok": "org.projectlombok:lombok:1.16.20",
+            "commons-lang3": "org.apache.commons:commons-lang3:3.6",
+            "junit": "junit:junit:4.12",
+            "swagger-annotations": "io.swagger:swagger-annotations:${swaggerVersion}",
+            "swagger-core": "io.swagger:swagger-core:${swaggerVersion}",
+            "springfox-swagger2": "io.springfox:springfox-swagger2:${springfoxSwaggerVersion}",
+            "springfox-swagger-ui": "io.springfox:springfox-swagger-ui:${springfoxSwaggerVersion}",
+            "guava": "com.google.guava:guava:23.0",
+            "jackson-databind": "com.fasterxml.jackson.core:jackson-databind:2.9.0"
+    ]
+}

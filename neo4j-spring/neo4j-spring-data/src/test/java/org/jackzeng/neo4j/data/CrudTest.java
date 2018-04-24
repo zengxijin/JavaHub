@@ -46,7 +46,10 @@ public class CrudTest {
 
     @Test
     public void queryTest() throws Exception {
-
+        loanRepository.queryByCypher(10)
+                .forEach(loan -> {
+                    System.out.println(loan);
+                });
     }
 
     @Test

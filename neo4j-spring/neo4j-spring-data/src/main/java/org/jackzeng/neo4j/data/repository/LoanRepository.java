@@ -1,6 +1,7 @@
 package org.jackzeng.neo4j.data.repository;
 
 import org.jackzeng.neo4j.data.domain.Loan;
+import org.neo4j.driver.v1.StatementResult;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.repository.query.Param;

@@ -1,10 +1,10 @@
 package org.jackzeng.neo4j.data.domain;
 
 import com.google.common.collect.Lists;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.RecursiveToStringStyle;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.jackzeng.neo4j.data.constant.RelationshipType;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
@@ -45,5 +45,34 @@ public class Loan {
 
             this.applicants.add(applicant);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "id=" + id +
+                ", loanId='" + loanId + '\'' +
+                ", amount=" + amount +
+                ", product='" + product + '\'' +
+                ", applicants='" + applicantsToString() + '\'' +
+                '}';
+    }
+
+    private String applicantsToString() {
+        if (this.applicants == null) {
+            return "null";
+        }
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        applicants.forEach(
+                app -> {
+                    builder.append("{");
+                    builder.append("ssn=" + app.getSsn());
+                    builder.append("}");
+                    builder.append(",");
+                }
+        );
+        return builder.toString().substring(0,builder.toString().length()-1) + "]";
     }
 }

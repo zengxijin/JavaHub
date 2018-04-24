@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.builder.RecursiveToStringStyle;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.jackzeng.neo4j.data.constant.RelationshipType;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
@@ -34,6 +37,7 @@ public class Applicant {
     private String phone;
 
     @Relationship(type = RelationshipType.APPLY, direction = Relationship.OUTGOING)
+    @ToStringExclude
     private List<Loan> loans;
 
     public void addLoan(Loan loan) {
@@ -43,5 +47,34 @@ public class Applicant {
             }
             loans.add(loan);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Applicant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ssn='" + ssn + '\'' +
+                ", phone='" + phone + '\'' +
+                ", loans='" + loansToString() + '\'' +
+                '}';
+    }
+
+    private String loansToString() {
+        if (this.loans == null) {
+            return "null";
+        }
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        loans.forEach(
+                loan -> {
+                    builder.append("{");
+                    builder.append("amount=" + loan.getAmount());
+                    builder.append("}");
+                    builder.append(",");
+                }
+        );
+        return builder.toString().substring(0,builder.toString().length()-1) + "]";
     }
 }

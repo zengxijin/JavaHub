@@ -47,5 +47,4 @@ public class Neo4jDataConfiguration {
     public Neo4jTransactionManager transactionManager() {
         return new Neo4jTransactionManager(sessionFactory());
     }
-
 }

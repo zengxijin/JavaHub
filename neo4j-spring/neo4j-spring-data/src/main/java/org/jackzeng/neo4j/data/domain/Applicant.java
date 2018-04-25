@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.builder.RecursiveToStringStyle;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.HashCodeExclude;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.jackzeng.neo4j.data.constant.RelationshipType;
@@ -36,8 +37,9 @@ public class Applicant {
 
     private String phone;
 
-    @Relationship(type = RelationshipType.APPLY, direction = Relationship.OUTGOING)
     @ToStringExclude
+    @HashCodeExclude
+    @Relationship(type = RelationshipType.APPLY, direction = Relationship.OUTGOING)
     private List<Loan> loans;
 
     public void addLoan(Loan loan) {
@@ -51,37 +53,47 @@ public class Applicant {
 
     @Override
     public String toString() {
-        return "Applicant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", ssn='" + ssn + '\'' +
-                ", phone='" + phone + '\'' +
-                ", loans='" + loansToString() + '\'' +
-                '}';
+        return new ReflectionToStringBuilder(this).setExcludeFieldNames("loans").toString();
     }
 
-    /**
-     * avoid recursive reference toString() StackOverflow problem
-     * @return
-     */
-    private String loansToString() {
-        if (this.loans == null) {
-            return "null";
-        }
-
-        StringBuilder builder = new StringBuilder();
-        builder.append("[");
-        loans.forEach(
-                loan -> {
-                    builder.append("{");
-                    builder.append(" id='" + loan.getId() + "',");
-                    builder.append(" amount=" + loan.getAmount() + ",");
-                    builder.append(" product='" + loan.getProduct() + "',");
-                    builder.append(" loanId='" + loan.getLoanId() + "'");
-                    builder.append("}");
-                    builder.append(",");
-                }
-        );
-        return builder.toString().substring(0,builder.toString().length()-1) + "]";
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
     }
+
+//    @Override
+//    public String toString() {
+//        return "Applicant{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", ssn='" + ssn + '\'' +
+//                ", phone='" + phone + '\'' +
+//                ", loans='" + loansToString() + '\'' +
+//                '}';
+//    }
+//
+//    /**
+//     * avoid recursive reference toString() StackOverflow problem
+//     * @return
+//     */
+//    private String loansToString() {
+//        if (this.loans == null) {
+//            return "null";
+//        }
+//
+//        StringBuilder builder = new StringBuilder();
+//        builder.append("[");
+//        loans.forEach(
+//                loan -> {
+//                    builder.append("{");
+//                    builder.append(" id='" + loan.getId() + "',");
+//                    builder.append(" amount=" + loan.getAmount() + ",");
+//                    builder.append(" product='" + loan.getProduct() + "',");
+//                    builder.append(" loanId='" + loan.getLoanId() + "'");
+//                    builder.append("}");
+//                    builder.append(",");
+//                }
+//        );
+//        return builder.toString().substring(0,builder.toString().length()-1) + "]";
+//    }
 }

@@ -36,6 +36,7 @@ public class Neo4jDataConfiguration {
 
     @Bean
     public org.neo4j.ogm.config.Configuration configuration() {
+        //default connectionPoolSize is 50
         return new org.neo4j.ogm.config.Configuration.Builder()
                 .uri(url)
                 .credentials(user, pwd)

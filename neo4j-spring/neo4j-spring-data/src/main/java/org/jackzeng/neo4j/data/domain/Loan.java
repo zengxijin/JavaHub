@@ -68,7 +68,10 @@ public class Loan {
         applicants.forEach(
                 app -> {
                     builder.append("{");
-                    builder.append("ssn=" + app.getSsn());
+                    builder.append(" id='" + app.getId() + "',");
+                    builder.append(" ssn='" + app.getSsn() + "',");
+                    builder.append(" name='" + app.getName() + "',");
+                    builder.append(" phone='" + app.getPhone() + "'");
                     builder.append("}");
                     builder.append(",");
                 }

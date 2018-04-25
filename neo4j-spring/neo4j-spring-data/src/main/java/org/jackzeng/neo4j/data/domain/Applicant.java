@@ -60,6 +60,10 @@ public class Applicant {
                 '}';
     }
 
+    /**
+     * avoid recursive reference toString() StackOverflow problem
+     * @return
+     */
     private String loansToString() {
         if (this.loans == null) {
             return "null";
@@ -70,7 +74,10 @@ public class Applicant {
         loans.forEach(
                 loan -> {
                     builder.append("{");
-                    builder.append("amount=" + loan.getAmount());
+                    builder.append(" id='" + loan.getId() + "',");
+                    builder.append(" amount=" + loan.getAmount() + ",");
+                    builder.append(" product='" + loan.getProduct() + "',");
+                    builder.append(" loanId='" + loan.getLoanId() + "'");
                     builder.append("}");
                     builder.append(",");
                 }

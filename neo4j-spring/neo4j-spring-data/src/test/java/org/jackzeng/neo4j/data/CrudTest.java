@@ -1,8 +1,12 @@
 package org.jackzeng.neo4j.data;
 
 import org.jackzeng.neo4j.data.domain.Applicant;
+import org.jackzeng.neo4j.data.domain.Company;
+import org.jackzeng.neo4j.data.domain.Complaint;
 import org.jackzeng.neo4j.data.domain.Loan;
 import org.jackzeng.neo4j.data.repository.ApplicantRepository;
+import org.jackzeng.neo4j.data.repository.CompanyRepository;
+import org.jackzeng.neo4j.data.repository.ComplaintRepository;
 import org.jackzeng.neo4j.data.repository.LoanRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -90,5 +94,36 @@ public class CrudTest {
         if (applicant != null) {
             applicantRepository.delete(applicant);
         }
+
+        Loan loan2 = loanRepository.findByLoanId("5678");
+        System.out.println(loan2);
+
+        Applicant applicant2 = applicantRepository.findBySsn("123456199910015678");
+        System.out.println(applicant2);
+
+        if (loan2 != null) {
+            loanRepository.delete(loan2);
+        }
+
+        if (applicant2 != null) {
+            applicantRepository.delete(applicant2);
+        }
+    }
+
+    @Autowired
+    private ComplaintRepository complaintRepository;
+
+    @Test
+    public void testCompliant() throws Exception {
+        Complaint complaint = complaintRepository.findById(1422680);
+        System.out.println(complaint);
+    }
+
+    @Autowired
+    private CompanyRepository companyRepository;
+    @Test
+    public void testCompany() throws Exception {
+        Company company = companyRepository.findFirstByName("EXPERIAN INFORMATION SOLUTIONS INC.");
+        System.out.println(company);
     }
 }

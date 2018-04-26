@@ -1,10 +1,7 @@
 package org.jackzeng.neo4j.data.domain;
 
 import com.google.common.collect.Lists;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.HashCodeExclude;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -26,11 +23,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Loan {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Loan extends BaseNodeEntity {
 
     private String loanId;
 

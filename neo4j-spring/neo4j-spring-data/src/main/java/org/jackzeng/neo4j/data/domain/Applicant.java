@@ -25,11 +25,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Applicant {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Applicant extends BaseNodeEntity {
 
     private String name;
 

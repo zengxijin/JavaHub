@@ -1,3 +1,4 @@
 rootProject.name = 'neo4j-spring'
 include 'neo4j-spring-data'
+include 'neo4j-spark'
 

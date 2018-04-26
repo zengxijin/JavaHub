@@ -115,12 +115,14 @@ public class CrudTest {
 
     @Test
     public void testCompliant() throws Exception {
+        //会报错，因为原来的节点中已经有id这个字段
         Complaint complaint = complaintRepository.findById(1422680);
         System.out.println(complaint);
     }
 
     @Autowired
     private CompanyRepository companyRepository;
+
     @Test
     public void testCompany() throws Exception {
         Company company = companyRepository.findFirstByName("EXPERIAN INFORMATION SOLUTIONS INC.");

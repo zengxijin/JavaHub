@@ -1,11 +1,14 @@
 package org.jackzeng
 
 import org.apache.spark.api.java.JavaSparkContext
+import org.apache.spark.graphx.{Edge, Graph}
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
+import org.junit.Assert.assertEquals
 import org.junit.{After, Before, Test}
 import org.neo4j.driver.internal.InternalNode
 import org.neo4j.harness.{ServerControls, TestServerBuilders}
-import org.neo4j.spark.{Executor, Neo4j}
+import org.neo4j.spark.{Executor, Neo4j, Neo4jGraph}
 
 import scala.collection.JavaConverters._
 
@@ -68,17 +71,23 @@ class Neo4jSparkTest {
             for ((k,v) <- node.asMap().asScala) {
               println(k + " = " + v)
             }
-
           }
         )
 
       }
     )
-
-
   }
 
 
+  def runCypherSaveGraph: Unit = {
+    val edges: RDD[Edge[Long]] = sc.makeRDD(Seq(Edge(0, 1, 42L)))
+    val graph = Graph.fromEdges(edges, -1)
+    assertEquals(2, graph.vertices.count)
+    assertEquals(1, graph.edges.count)
+    Neo4jGraph.saveGraph(sc, graph, null, ("REL", "test"))
+
+    assertEquals(42L, server.graph().execute("MATCH (:A)-[rel:REL]->(:B) RETURN rel.test as prop").columnAs("prop").next())
+  }
 
 
 

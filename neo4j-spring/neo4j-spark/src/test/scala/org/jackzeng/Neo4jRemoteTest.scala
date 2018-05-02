@@ -121,6 +121,7 @@ class Neo4jRemoteTest {
       )
     )
 
+    //Neo4jDataFrame.mergeEdgeList可以通过spark SQL生成的数据结构，来插入到数据库中，但是只能支持一个label的设置
     val df = new SQLContext(sc).createDataFrame(rows, schema)
     Neo4jDataFrame.mergeEdgeList(
       sc,

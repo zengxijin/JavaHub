@@ -8,7 +8,8 @@ import org.neo4j.ogm.annotation.NodeEntity;
  * @author xijin.zeng created on 2018/4/25
  */
 @NodeEntity
-public abstract class BaseNodeEntity {
+public class BaseNodeEntity {
+
     @Id
     @GeneratedValue
     private Long id;

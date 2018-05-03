@@ -65,6 +65,30 @@ public class CrudTest {
     }
 
     @Test
+    public void insertTwoTest() {
+        Loan loan1 = Loan.builder()
+                .loanId("1234")
+                .amount(new BigDecimal(123.123))
+                .product("A")
+                .build();
+
+        Loan loan2 = Loan.builder()
+                .loanId("5678")
+                .amount(new BigDecimal(234.234))
+                .product("B")
+                .build();
+
+        Applicant applicant = Applicant.builder()
+                .loans(Arrays.asList(loan1,loan2))
+                .name("张三")
+                .phone("138123456789")
+                .ssn("123456199910011234")
+                .build();
+
+        applicantRepository.save(applicant);
+    }
+
+    @Test
     public void queryTest() throws Exception {
         Iterable<Map<String,Object>> it = loanRepository.queryByCypher(10);
         it.forEach(

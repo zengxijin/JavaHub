@@ -1,0 +1,42 @@
+#!/bin/bash
+#Author Leo G
+#license GPLv2
+#techarena51.com
+
+#DECLARE VARIABLES
+backup_dir="/data"
+server_backup_dir="user@yourserver.com:/path/to/storebackup"
+log_dir="backuperrors.txt"
+email="you@youremail.com"
+#My own man pages say nothing about what 0 means, but from digging around, it seems to mean the current process group. Since the script get's it's own process group, this ends up sending SIGHUP to all the script's children, foreground and background.
+#http://stackoverflow.com/questions/1644856/terminate-running-commands-when-shell-script-is-killed
+trap 'kill -HUP 0' EXIT
+
+#FUNCTION TO USE RYSNC TO BACKUP DIRECTORIES
+function backup () {
+
+if rsync -avz --delete $backup_dir $server_backup_dir  2>&1 >>$log_dir
+then
+du -sh $backup_dir| mail -s "backup succeeded $backup_dir" $email
+else
+mail -s "rysnc failed on $backup_dir" $email < $log_dir
+return 1
+fi
+}
+
+
+#CHECK IF INOTIFY-TOOLS IS INSTALLED
+type -P inotifywait &>/dev/null || { echo "inotifywait command not found."; exit 1; }
+
+#INFINITE WHILE LOOP
+while true
+do
+
+#START RSYNC AND ENSURE DIR ARE UPTO DATA
+backup  || exit 0
+
+#START RSYNC AND TRIGGER BACKUP ON CHANGE
+inotifywait -r -e modify,attrib,close_write,move,create,delete  --format '%T %:e %f' --timefmt '%c' $backup_dir  2>&1 >>$log_dir && backup
+
+done
+

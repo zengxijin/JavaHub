@@ -22,7 +22,7 @@ class Neo4jRemoteTest {
   @Before
   @throws[Exception]
   def setup(): Unit = {
-    val remoteServerBoltUri = "bolt://10.132.0.5"
+    val remoteServerBoltUri = "bolt://192.168.56.101"
     val user = "neo4j"
     val password = "zengxijin123"
 
@@ -126,12 +126,48 @@ class Neo4jRemoteTest {
     Neo4jDataFrame.mergeEdgeList(
       sc,
       df,
-      ("TypeA", Seq("p1", "p2")),
-      ("XREL", Seq.empty),
-      ("TypeB", Seq("p3", "p4"))
+      ("TypeA", Seq("p1", "p2")), //开始节点，p1和p2结果都会是label为TypeA的属性
+      ("XREL", Seq.empty), //关系，Seq.empty表示没有属性的关系
+      ("TypeB", Seq("p3", "p4")) //结束节点，p1和p2结果都会是label为TypeA的属性
     )
 
   }
+
+  @Test
+  def mergeEdgeListWithRelPros(): Unit = {
+    val seqs = Seq(
+      Row("Row1Val1", "Row1Val2", "Row1Val3", "RelPro", 123, 0.55D),
+      Row("Row2Val1", "Row2Val2", "Row2Val3", "RelPro", 456, 0.88D)
+    )
+
+    val rdds = sc.makeRDD(seqs)
+    /**
+      * 这里的schema的设计比较重要
+      * column的名字直接对应节点或者关系的properties，因此最好的设计应该提前设计好节点和关系的模型，然后生成对应的schema
+      * 最后使用mergeEdgeList(sparkContext,dataFrame,srcNode,relPro,dstNode) 来插入到图中
+      */
+    val schema = StructType(
+      Seq(
+        StructField("COL_1", DataTypes.StringType),
+        StructField("COL_2", DataTypes.StringType),
+        StructField("COL_3", DataTypes.StringType),
+        StructField("COL_4", DataTypes.StringType),
+        StructField("COL_5", DataTypes.IntegerType),
+        StructField("COL_6", DataTypes.DoubleType)
+      )
+    )
+
+    val dataFrame = new SQLContext(sc).createDataFrame(rdds, schema)
+    Neo4jDataFrame.mergeEdgeList(
+      sc,
+      dataFrame,
+      ("StartNodeLabel", Seq("COL_1", "COL_2")),
+      ("RelLabel", Seq("COL_4")), //关系的属性也从dataframe中取值填充
+      ("EndNodeLabel", Seq("COL_3", "COL_5", "COL_6"))
+    )
+
+  }
+
 
   def printNodeRddInfo(nodeRdd: RDD[Row]): Unit = {
     nodeRdd.foreach(

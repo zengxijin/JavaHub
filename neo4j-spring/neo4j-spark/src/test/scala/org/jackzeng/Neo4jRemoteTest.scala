@@ -92,12 +92,19 @@ class Neo4jRemoteTest {
 //    val edges: RDD[Edge[String]] = sc.makeRDD(Seq(Edge(1L, 2L, "ABC")))
 //    val graph = Graph[(String, String, Long), (String)](nodes, edges)
 
-    val nodes: RDD[(VertexId, String)] = sc.makeRDD(Seq((1L, "A"), (2L, "B")))
-    val edges: RDD[Edge[String]] = sc.makeRDD(Seq(Edge(1L, 2L, "ABC")))
-    val graph = Graph[(String), (String)](nodes, edges)
+    val nodes: RDD[(VertexId, String)] = sc.makeRDD(Seq((1L, "A"), (2L, "B"))) //节点: (vid, attr)
+    val edges: RDD[Edge[String]] = sc.makeRDD(Seq(Edge(1L, 2L, "ABC"))) //边:(srcVid, dstVid, attr)
+    val graph = Graph[(String), (String)](nodes, edges) //构建GraphX图（泛型参数里都是属性的指定）
 
     //Neo4jGraph.saveGraph(sc, graph, "prop")
-    Neo4jGraph.saveGraph(sc, graph, "vpro", ("FOOBAR", "epro"), Option("Foo", "vid"), Option("Foo", "vid"), merge = true)
+    Neo4jGraph.saveGraph(
+      sc,
+      graph, //GraphX 生成的图
+      "vpro", //指定到neo4j的属性名称，对应取的值就是Vertex上attr的值
+      ("FOOBAR", "epro"), //指定到neo4j上边的label和对应的属性名称，对应属性取的值也是Edge里面的attr的值
+      Option("Foo", "vid"), //起始节点，第一个参数Foo在Neo4j上就是节点的label，第2个参数vid在neo4j上对应就是属性名称，属性的值是Vertex的vid的值，一定是Long型的
+      Option("Foo", "vid"), //结束节点，参考起始节点
+      merge = true)
   }
 
   @Test

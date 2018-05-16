@@ -1,0 +1,4 @@
+rootProject.name = 'spring-cloud-zookeeper'
+include 'reg-server'
+include 'discovery-client'
+

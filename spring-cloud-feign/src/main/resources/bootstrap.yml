@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: development
+
+  application:
+    name: credit-data-collection-service
+    version: 1.0
+  cloud:
+    zookeeper:
+      connect-string: 10.12.128.58:31402
+#      connect-string: localhost:2181
+      config:
+        root: /config/credit/credit-data-collection-service
+
+#server:
+#  port: 7070

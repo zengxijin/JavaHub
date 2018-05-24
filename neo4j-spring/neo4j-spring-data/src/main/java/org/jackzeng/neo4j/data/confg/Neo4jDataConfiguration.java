@@ -1,5 +1,6 @@
 package org.jackzeng.neo4j.data.confg;
 
+import org.jackzeng.neo4j.data.driver.PooledDriver;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +29,11 @@ public class Neo4jDataConfiguration {
 
     @Value("${spring.data.neo4j.password}")
     private String pwd;
+
+    @Bean
+    public PooledDriver buildPooledDriver() {
+        return new PooledDriver(url, user, pwd);
+    }
 
     @Bean
     public SessionFactory sessionFactory() {

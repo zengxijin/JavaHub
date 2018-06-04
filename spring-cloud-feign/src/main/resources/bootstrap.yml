@@ -7,7 +7,7 @@ spring:
     version: 1.0
   cloud:
     zookeeper:
-      connect-string: 10.12.128.58:31402
+      connect-string: 192.168.56.101:2181
 #      connect-string: localhost:2181
       config:
         root: /config/credit/credit-data-collection-service

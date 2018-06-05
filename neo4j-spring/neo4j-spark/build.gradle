@@ -15,6 +15,9 @@ dependencies {
             "org.apache.spark:spark-graphx_2.11:${sparkVersion}",
             "org.apache.spark:spark-sql_2.11:${sparkVersion}"
 
+    compile 'org.scala-lang:scala-library:2.11.8'
+
     testCompile "org.neo4j.test:neo4j-harness:3.3.4"
+    testCompile 'org.scala-lang:scala-library:2.11.8'
 
 }

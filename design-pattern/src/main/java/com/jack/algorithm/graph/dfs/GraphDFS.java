@@ -30,7 +30,7 @@ public class GraphDFS {
 		int[] adjacency = graph.adjacentMatrix[index];
 		for (int i = 0; i < adjacency.length; i++) {
 			Vertex nextV = graph.vertexes.get(i);
-			if (nextV.isVisited() == false) {
+			if (nextV.isVisited() == false) {  // 递归终止条件
 				graph.startNode = nextV;
 				recursiveDFS(graph);
 			}

@@ -11,8 +11,8 @@ public class GarphTest {
 		graph.test();
 		
 		//GraphBFS.bfs(graph);
-		//GraphDFS.recursiveDFS(graph);
-		GraphDFS.DFS(graph);
+		GraphDFS.recursiveDFS(graph);
+		//GraphDFS.DFS(graph);
 	}
 
 }

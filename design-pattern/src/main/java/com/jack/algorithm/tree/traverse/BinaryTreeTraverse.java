@@ -139,6 +139,7 @@ public class BinaryTreeTraverse {
     /**
      * use queue to visit all nodes
      * add each level nodes to queue, and visit data
+     * 层级遍历
      * @param root
      */
     public static void levelTraverse(BinaryTreeNode root){

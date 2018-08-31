@@ -1,3 +1,5 @@
+package org.jackzeng;
+
 /**
  * @author xijin.zeng created on 2018/7/18
  */

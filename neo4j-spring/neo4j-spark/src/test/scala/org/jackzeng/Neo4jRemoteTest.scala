@@ -110,9 +110,20 @@ class Neo4jRemoteTest {
   @Test
   def mergeEdgeList(): Unit = {
     val rows = sc.makeRDD(Seq(Row("Keanu", "Matrix")))
-    val schema = StructType(Seq(StructField("name", DataTypes.StringType), StructField("title", DataTypes.StringType)))
+    val schema = StructType(
+      Seq(
+        StructField("name", DataTypes.StringType),
+        StructField("title", DataTypes.StringType)
+      )
+    )
     val df = new SQLContext(sc).createDataFrame(rows, schema)
-    Neo4jDataFrame.mergeEdgeList(sc, df, ("Person",Seq("name")),("ACTED_IN",Seq.empty),("Movie",Seq("title")))
+    Neo4jDataFrame.mergeEdgeList(
+      sc,
+      df,
+      ("Person",Seq("name")),
+      ("ACTED_IN",Seq.empty),
+      ("Movie",Seq("title"))
+    )
   }
 
   @Test

@@ -1,0 +1,28 @@
+group 'org.jackzeng'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+def h2oProjectVersion = "3.22.0.1"
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://h2o-release.s3.amazonaws.com/h2o/rel-xia/1/maven/repo/"
+    }
+}
+
+dependencies {
+    compile "ai.h2o:h2o-algos:${h2oProjectVersion}"
+    compile "ai.h2o:h2o-app:${h2oProjectVersion}"
+    compile "ai.h2o:h2o-core:${h2oProjectVersion}"
+    compile "ai.h2o:h2o-genmodel:${h2oProjectVersion}"
+    compile "ai.h2o:h2o-persist-hdfs:${h2oProjectVersion}"
+    compile "ai.h2o:h2o-web:${h2oProjectVersion}"
+//    for XGB
+    compile "ai.h2o:h2o-genmodel-ext-xgboost:${h2oProjectVersion}"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

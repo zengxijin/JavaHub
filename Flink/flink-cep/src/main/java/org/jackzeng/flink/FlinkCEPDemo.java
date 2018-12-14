@@ -1,6 +1,7 @@
 package org.jackzeng.flink;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.utils.ParameterTool;
@@ -24,8 +25,7 @@ public class FlinkCEPDemo {
         StreamExecutionEnvironment executionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment();
         // 每2秒做一次checkpoint
         //executionEnvironment.enableCheckpointing(2000);
-
-        FlinkKafkaConsumer09<String> consumer09 = getKafkaConsumer(args);
+        FlinkKafkaConsumer09<String> consumer09 = getKafkaConsumer(args, new SimpleStringSchema());
         DataStream<String> stream = executionEnvironment.addSource(consumer09);
 
         DataStream<Tuple2<String, Integer>> wordCounts = stream.flatMap(new Tokenizer()).keyBy(0).sum(1);
@@ -43,19 +43,14 @@ public class FlinkCEPDemo {
 
     }
 
-    private static FlinkKafkaConsumer09<String> getKafkaConsumer(String[] args) {
-        Properties properties = new Properties();
-        ParameterTool parameterTool = ParameterTool.fromArgs(args);
-
-        properties.setProperty("bootstrap.servers", parameterTool.get("bootstrap.servers"));
-        properties.setProperty("zookeeper.connect", parameterTool.get("zookeeper.connect"));
-        properties.setProperty("group.id", parameterTool.get("group.id"));
-        properties.setProperty("topic", parameterTool.get("topic"));
-
-        String topic = properties.getProperty("topic");
-
-        return new FlinkKafkaConsumer09<String>(topic, new SimpleStringSchema(), properties);
+    private static FlinkKafkaConsumer09<String> getKafkaConsumer(String[] args, DeserializationSchema schema) {
+        Properties properties = Util.parseParams(args);
+        return new FlinkKafkaConsumer09<String>(properties.getProperty("topic"), schema, properties);
     }
+
+
+
+
 
     public static class Tokenizer implements FlatMapFunction<String, Tuple2<String, Integer>> {
 

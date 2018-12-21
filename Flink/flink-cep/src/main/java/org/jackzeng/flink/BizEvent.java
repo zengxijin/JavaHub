@@ -20,6 +20,7 @@ public class BizEvent {
 
     public BizEvent(String bizCode, String scene, List<RuleResult> ruleCodes) {
         this.bizCode = bizCode;
+        this.scene = scene;
 
         ruleCodes.forEach(
                 ruleResult -> {
@@ -38,5 +39,20 @@ public class BizEvent {
         );
 
         checkResult = RulesCheck.unorderedCheck(this);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        hitRules.entrySet().forEach(
+                e -> builder.append(e.getKey() + ":" + String.valueOf(e.getValue()) + " ")
+        );
+
+        return "BizEvent{" +
+                "bizCode='" + bizCode + '\'' +
+                ", scene='" + scene + '\'' +
+                ", checkResult='" + checkResult + '\'' +
+                ", hitRules=" + builder.toString() +
+                '}';
     }
 }

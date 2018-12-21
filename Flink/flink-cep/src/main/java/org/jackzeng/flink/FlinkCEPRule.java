@@ -4,7 +4,9 @@ import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.serialization.AbstractDeserializationSchema;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.cep.CEP;
+import org.apache.flink.cep.PatternSelectFunction;
 import org.apache.flink.cep.PatternStream;
+import org.apache.flink.cep.nfa.AfterMatchSkipStrategy;
 import org.apache.flink.cep.pattern.Pattern;
 import org.apache.flink.cep.pattern.conditions.IterativeCondition;
 import org.apache.flink.core.fs.FileSystem;
@@ -31,7 +33,7 @@ public class FlinkCEPRule {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        FlinkKafkaConsumer09<RuleResult> consumer = ruleResultConsumer(args);
+        FlinkKafkaConsumer09<RuleResult> consumer = Util.ruleResultConsumer(args);
         DataStream<RuleResult> dataStream = environment.addSource(consumer);
 
         dataStream.print();
@@ -39,7 +41,7 @@ public class FlinkCEPRule {
         /**
          * 匹配所有的RuleResult事件
          */
-        Pattern<RuleResult, RuleResult> ruleResultPattern = Pattern.<RuleResult>begin("payday-loan")
+        Pattern<RuleResult, RuleResult> ruleResultPattern = Pattern.<RuleResult>begin("payday-loan", AfterMatchSkipStrategy.skipPastLastEvent())
                 .subtype(RuleResult.class)
                 .where(new IterativeCondition<RuleResult>() {
                     @Override
@@ -49,7 +51,10 @@ public class FlinkCEPRule {
                     }
                 })
                 //规则触发次数大于等于4次
-                .timesOrMore(4);
+                .timesOrMore(4); //R1,R2,R3,R2,R4 => 匹配出2个模式：错误 R1,R2,R3,R2(REJECT) 正确：R1,R2,R3,R2,R4（PASS）
+                //.times(4).greedy();
+
+
 
         /**
          * 将RuleResult事件基于每笔业务进行分组
@@ -63,13 +68,23 @@ public class FlinkCEPRule {
         /**
          * 将满足pattern的event事件select出来，形成新的BizEvent事件流
          */
-        DataStream<BizEvent> bizEventDataStream = patternStream
-                .select(
-                        (Map<String, List<RuleResult>> entry) -> {
-                            List<RuleResult> results = entry.get("payday-loan");
-                            return new BizEvent(results.get(0).getBizCode(), results);
-                        }
-                );
+//        DataStream<BizEvent> bizEventDataStream = patternStream
+//                .select(
+//                        (Map<String, List<RuleResult>> entry) -> {
+//                            List<RuleResult> results = entry.get("payday-loan");
+//                            RuleResult event = results.get(0);
+//                            return new BizEvent(event.getBizCode(), event.getScene(), results);
+//                        }
+//                ).returns(BizEvent.class);
+
+        DataStream<BizEvent> bizEventDataStream = patternStream.select(new PatternSelectFunction<RuleResult, BizEvent>() {
+            @Override
+            public BizEvent select(Map<String, List<RuleResult>> pattern) throws Exception {
+                List<RuleResult> results = pattern.get("payday-loan");
+                            RuleResult event = results.get(0);
+                            return new BizEvent(event.getBizCode(), event.getScene(), results);
+            }
+        });
 
         bizEventDataStream.print();
 
@@ -99,9 +114,10 @@ public class FlinkCEPRule {
 //                }
 //        );
 
-        SingleOutputStreamOperator<String> outputStreamOperator = dataStream.flatMap(
-                (RuleResult x, Collector<String> y) -> y.collect(x.toString())
-        ).returns(Types.STRING);
+//        SingleOutputStreamOperator<String> outputStreamOperator = dataStream.flatMap(
+//                (RuleResult x, Collector<String> y) -> y.collect(x.toString())
+//        ).returns(Types.STRING);
+
 
 //        SingleOutputStreamOperator<String> outputStreamOperator = dataStream.flatMap(
 //                new FlatMapFunction<RuleResult, String>() {
@@ -112,32 +128,13 @@ public class FlinkCEPRule {
 //                }
 //        );
 
-
+        SingleOutputStreamOperator<String> outputStreamOperator = bizEventDataStream.flatMap(
+                (BizEvent x, Collector<String> y) -> y.collect(x.toString())
+        ).returns(Types.STRING);
         outputStreamOperator.writeAsText("/tmp/rule-result.txt", FileSystem.WriteMode.OVERWRITE);
 
-        environment.execute("RuleResultDemo");
+        environment.execute("CEP-RuleResultDemo");
 
     }
 
-    private static FlinkKafkaConsumer09<RuleResult> ruleResultConsumer(String[] args) {
-        Properties properties = Util.parseParams(args);
-        return new FlinkKafkaConsumer09<RuleResult>(properties.getProperty("topic"), new RuleResultSchema(), properties);
-    }
-
-    public static void pattern() {
-
-    }
-
-    /**
-     * 继承AbstractDeserializationSchema抽象类，用于自定义反序列化操作
-     */
-    public static class RuleResultSchema extends AbstractDeserializationSchema<RuleResult> {
-        // for json string deserialize
-        private static final ObjectMapper mapper = new ObjectMapper();
-
-        @Override
-        public RuleResult deserialize(byte[] message) throws IOException {
-            return mapper.readValue(message, RuleResult.class);
-        }
-    }
 }

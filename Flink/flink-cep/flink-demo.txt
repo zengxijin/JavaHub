@@ -8,9 +8,20 @@
 {"ruleName":"payday-loan-anti-fraud-income","bizCode":"biz001","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R2"}
 {"ruleName":"payday-loan-anti-fraud-phone","bizCode":"biz001","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R4"}
 
+{"ruleName":"payday-loan-anti-fraud-age","bizCode":"biz003","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R1"}
+{"ruleName":"payday-loan-anti-fraud-sex","bizCode":"biz003","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R3"}
+{"ruleName":"payday-loan-anti-fraud-income","bizCode":"biz003","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R2"}
+{"ruleName":"payday-loan-anti-fraud-phone","bizCode":"biz003","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R4"}
+
+{"ruleName":"payday-loan-anti-fraud-age","bizCode":"biz004","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R1"}
+{"ruleName":"payday-loan-anti-fraud-sex","bizCode":"biz004","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R3"}
+{"ruleName":"payday-loan-anti-fraud-income","bizCode":"biz004","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R2"}
+{"ruleName":"payday-loan-anti-fraud-phone","bizCode":"biz004","scene":"payday-loan-anti-fraud","ruleHit":true,"ruleCode":"R4"}
+
 {"ruleName":"p2p-anti-fraud-01","bizCode":"biz002","scene":"p2p-anti-fraud","ruleHit":true,"ruleCode":"X1"}
 {"ruleName":"p2p-anti-fraud-03","bizCode":"biz002","scene":"p2p-anti-fraud","ruleHit":true,"ruleCode":"X3"}
 {"ruleName":"p2p-anti-fraud-02","bizCode":"biz002","scene":"p2p-anti-fraud","ruleHit":true,"ruleCode":"X2"}
+{"ruleName":"p2p-anti-fraud-04","bizCode":"biz002","scene":"p2p-anti-fraud","ruleHit":true,"ruleCode":"X4"}
 
 ./flink run -c org.jackzeng.flink.FlinkCEPRule /home/zengxijin/flink-cep-1.0-SNAPSHOT.jar --bootstrap.servers 192.168.56.101:9092 --zookeeper.connect 192.168.56.101:2181 --group.id test --topic test
 

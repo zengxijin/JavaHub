@@ -49,9 +49,6 @@ public class FlinkCEPDemo {
     }
 
 
-
-
-
     public static class Tokenizer implements FlatMapFunction<String, Tuple2<String, Integer>> {
 
         @Override

@@ -1,0 +1,22 @@
+RuleResult(bizCode=biz001, ruleName=payday-loan-anti-fraud-age, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R1)
+RuleResult(bizCode=biz001, ruleName=payday-loan-anti-fraud-sex, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R3)
+RuleResult(bizCode=biz001, ruleName=payday-loan-anti-fraud-income, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R2)
+RuleResult(bizCode=biz001, ruleName=payday-loan-anti-fraud-phone, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R4)
+BizEvent{bizCode='biz001', scene='payday-loan-anti-fraud', checkResult='PASS', hitRules=R2:1 R3:1 R4:1 R1:1 }
+RuleResult(bizCode=biz002, ruleName=p2p-anti-fraud-01, scene=p2p-anti-fraud, ruleHit=true, ruleCode=X1)
+RuleResult(bizCode=biz002, ruleName=p2p-anti-fraud-03, scene=p2p-anti-fraud, ruleHit=true, ruleCode=X3)
+RuleResult(bizCode=biz002, ruleName=p2p-anti-fraud-02, scene=p2p-anti-fraud, ruleHit=true, ruleCode=X2)
+RuleResult(bizCode=biz002, ruleName=p2p-anti-fraud-04, scene=p2p-anti-fraud, ruleHit=true, ruleCode=X4)
+RuleResult(bizCode=biz003, ruleName=payday-loan-anti-fraud-age, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R1)
+RuleResult(bizCode=biz003, ruleName=payday-loan-anti-fraud-sex, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R3)
+RuleResult(bizCode=biz003, ruleName=payday-loan-anti-fraud-income, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R2)
+RuleResult(bizCode=biz003, ruleName=payday-loan-anti-fraud-phone, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R4)
+BizEvent{bizCode='biz003', scene='payday-loan-anti-fraud', checkResult='PASS', hitRules=R2:1 R3:1 R4:1 R1:1 }
+RuleResult(bizCode=biz004, ruleName=payday-loan-anti-fraud-age, scene=payday-loan-anti-fraud, ruleHit=false, ruleCode=R1)
+RuleResult(bizCode=biz004, ruleName=payday-loan-anti-fraud-sex, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R3)
+RuleResult(bizCode=biz004, ruleName=payday-loan-anti-fraud-income, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R2)
+RuleResult(bizCode=biz004, ruleName=payday-loan-anti-fraud-phone, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R4)
+BizEvent{bizCode='biz004', scene='payday-loan-anti-fraud', checkResult='REJECT', hitRules=R2:1 R3:1 R4:1 R1:0 }
+RuleResult(bizCode=biz003, ruleName=payday-loan-anti-fraud-income, scene=payday-loan-anti-fraud, ruleHit=true, ruleCode=R2)
+BizEvent{bizCode='biz003', scene='payday-loan-anti-fraud', checkResult='PASS', hitRules=R2:2 R3:1 R4:1 R1:1 }
+BizEvent{bizCode='biz003', scene='payday-loan-anti-fraud', checkResult='PENDING', hitRules=R2:2 R3:1 R4:1 }

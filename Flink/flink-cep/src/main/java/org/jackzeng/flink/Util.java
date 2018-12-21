@@ -1,6 +1,7 @@
 package org.jackzeng.flink;
 
 import org.apache.flink.api.java.utils.ParameterTool;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer09;
 
 import java.util.Properties;
 
@@ -18,5 +19,10 @@ public class Util {
         properties.setProperty("topic", parameterTool.get("topic"));
 
         return properties;
+    }
+
+    public static FlinkKafkaConsumer09<RuleResult> ruleResultConsumer(String[] args) {
+        Properties properties = Util.parseParams(args);
+        return new FlinkKafkaConsumer09<RuleResult>(properties.getProperty("topic"), new RuleResultSchema(), properties);
     }
 }

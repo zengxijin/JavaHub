@@ -1,0 +1,10 @@
+ext {
+    sparkVersion = "2.3.0"
+
+    dependencies = [
+            "lombok": "org.projectlombok:lombok:1.16.20",
+            "commons-lang3": "org.apache.commons:commons-lang3:3.6",
+            "junit": "junit:junit:4.12",
+            "guava": "com.google.guava:guava:23.0"
+    ]
+}

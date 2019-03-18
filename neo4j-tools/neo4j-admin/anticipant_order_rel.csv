@@ -1,0 +1,3 @@
+﻿id:IGNORE,:END_ID(Order),house_id:IGNORE,role:IGNORE,:START_ID(Participant),:TYPE
+1,JR101,1234,buyer,abc123,WITH
+2,JR101,1234,seller,efg345,WITH

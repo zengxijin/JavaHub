@@ -1,0 +1,28 @@
+apply from: "config.gradle"
+
+allprojects {
+    group 'org.jackzeng'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        mavenCentral()
+    }
+
+    dependencies {
+        compile rootProject.ext.dependencies["lombok"],
+                rootProject.ext.dependencies["commons-lang3"]
+
+
+        testCompile rootProject.ext.dependencies["junit"]
+    }
+}

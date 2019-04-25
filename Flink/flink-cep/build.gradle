@@ -1,0 +1,49 @@
+group 'org.jackzeng'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile "org.apache.flink:flink-java:1.4.2"
+    compile "org.apache.flink:flink-streaming-java_2.11:1.4.2"
+    compile "org.apache.flink:flink-clients_2.11"
+
+    compile "org.apache.flink:flink-cep_2.11:1.4.2"
+    compile "org.apache.flink:flink-connector-kafka-0.9_2.11:1.4.2"
+
+    compile "org.projectlombok:lombok:1.16.20"
+    compile "org.apache.commons:commons-lang3:3.6"
+    compile "com.google.guava:guava:23.0"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+//apply plugin: 'com.github.johnrengelman.shadow'
+//
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+//    }
+//}
+
+jar {
+    manifest {
+        attributes "Main-Class": "org.jackzeng.flink.FlinkCEPDemo"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+

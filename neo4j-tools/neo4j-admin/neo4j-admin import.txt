@@ -1,0 +1,11 @@
+./neo4j-admin import \
+--database demo.db \
+--id-type string \
+--nodes /home/zengxijin/data/anticipant_entity.csv \
+--nodes /home/zengxijin/data/house_entity.csv \
+--nodes /home/zengxijin/data/order_entity.csv \
+--relationships /home/zengxijin/data/anticipant_house_rel.csv \
+--relationships /home/zengxijin/data/anticipant_order_rel.csv \
+--relationships /home/zengxijin/data/house_order_rel.csv \
+--report-file /home/zengxijin/data/import-report.txt \
+>> /home/zengxijin/data/import-detail.txt

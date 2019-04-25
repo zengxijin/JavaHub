@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'scala'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.8'
+    compile "org.apache.spark:spark-core_2.11:${sparkVersion}"
+    compile "org.apache.spark:spark-graphx_2.11:${sparkVersion}"
+    compile "org.apache.spark:spark-sql_2.11:${sparkVersion}"
+}

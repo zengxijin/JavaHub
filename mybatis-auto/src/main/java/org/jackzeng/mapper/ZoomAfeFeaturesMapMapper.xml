@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jackzeng.mapper.generator.ZoomAfeFeaturesMapMapper" >
+  <resultMap id="BaseResultMap" type="org.jackzeng.pojo.ZoomAfeFeaturesMap" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="scene_type" property="sceneType" jdbcType="INTEGER" />
+    <result column="feature_executor_id" property="featureExecutorId" jdbcType="BIGINT" />
+    <result column="scene_no" property="sceneNo" jdbcType="VARCHAR" />
+    <result column="quota_no" property="quotaNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, scene_type, feature_executor_id, scene_no, quota_no, status, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.jackzeng.pojo.ZoomAfeFeaturesMapExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zoom_afe_features_map
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from zoom_afe_features_map
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from zoom_afe_features_map
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.jackzeng.pojo.ZoomAfeFeaturesMapExample" >
+    delete from zoom_afe_features_map
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.jackzeng.pojo.ZoomAfeFeaturesMap" >
+    insert into zoom_afe_features_map (id, scene_type, feature_executor_id, 
+      scene_no, quota_no, status, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{sceneType,jdbcType=INTEGER}, #{featureExecutorId,jdbcType=BIGINT}, 
+      #{sceneNo,jdbcType=VARCHAR}, #{quotaNo,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.jackzeng.pojo.ZoomAfeFeaturesMap" >
+    insert into zoom_afe_features_map
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sceneType != null" >
+        scene_type,
+      </if>
+      <if test="featureExecutorId != null" >
+        feature_executor_id,
+      </if>
+      <if test="sceneNo != null" >
+        scene_no,
+      </if>
+      <if test="quotaNo != null" >
+        quota_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sceneType != null" >
+        #{sceneType,jdbcType=INTEGER},
+      </if>
+      <if test="featureExecutorId != null" >
+        #{featureExecutorId,jdbcType=BIGINT},
+      </if>
+      <if test="sceneNo != null" >
+        #{sceneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="quotaNo != null" >
+        #{quotaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.jackzeng.pojo.ZoomAfeFeaturesMapExample" resultType="java.lang.Integer" >
+    select count(*) from zoom_afe_features_map
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zoom_afe_features_map
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sceneType != null" >
+        scene_type = #{record.sceneType,jdbcType=INTEGER},
+      </if>
+      <if test="record.featureExecutorId != null" >
+        feature_executor_id = #{record.featureExecutorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sceneNo != null" >
+        scene_no = #{record.sceneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quotaNo != null" >
+        quota_no = #{record.quotaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zoom_afe_features_map
+    set id = #{record.id,jdbcType=BIGINT},
+      scene_type = #{record.sceneType,jdbcType=INTEGER},
+      feature_executor_id = #{record.featureExecutorId,jdbcType=BIGINT},
+      scene_no = #{record.sceneNo,jdbcType=VARCHAR},
+      quota_no = #{record.quotaNo,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.jackzeng.pojo.ZoomAfeFeaturesMap" >
+    update zoom_afe_features_map
+    <set >
+      <if test="sceneType != null" >
+        scene_type = #{sceneType,jdbcType=INTEGER},
+      </if>
+      <if test="featureExecutorId != null" >
+        feature_executor_id = #{featureExecutorId,jdbcType=BIGINT},
+      </if>
+      <if test="sceneNo != null" >
+        scene_no = #{sceneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="quotaNo != null" >
+        quota_no = #{quotaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.jackzeng.pojo.ZoomAfeFeaturesMap" >
+    update zoom_afe_features_map
+    set scene_type = #{sceneType,jdbcType=INTEGER},
+      feature_executor_id = #{featureExecutorId,jdbcType=BIGINT},
+      scene_no = #{sceneNo,jdbcType=VARCHAR},
+      quota_no = #{quotaNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jackzeng.mapper.generator.ZoomAfeFeatureExecutorMapper" >
+  <resultMap id="BaseResultMap" type="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="feature_executor_class_id" property="featureExecutorClassId" jdbcType="BIGINT" />
+    <result column="input_field_jsonpath" property="inputFieldJsonpath" jdbcType="VARCHAR" />
+    <result column="output_field" property="outputField" jdbcType="VARCHAR" />
+    <result column="is_must" property="isMust" jdbcType="TINYINT" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+    <result column="default_value" property="defaultValue" jdbcType="VARCHAR" />
+    <result column="variable_group" property="variableGroup" jdbcType="VARCHAR" />
+    <result column="data_source" property="dataSource" jdbcType="VARCHAR" />
+    <result column="data_interface" property="dataInterface" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, feature_executor_class_id, input_field_jsonpath, output_field, is_must, data_type, 
+    default_value, variable_group, data_source, data_interface, status, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zoom_afe_feature_executor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from zoom_afe_feature_executor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from zoom_afe_feature_executor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutorExample" >
+    delete from zoom_afe_feature_executor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
+    insert into zoom_afe_feature_executor (id, feature_executor_class_id, input_field_jsonpath, 
+      output_field, is_must, data_type, 
+      default_value, variable_group, data_source, 
+      data_interface, status, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{featureExecutorClassId,jdbcType=BIGINT}, #{inputFieldJsonpath,jdbcType=VARCHAR}, 
+      #{outputField,jdbcType=VARCHAR}, #{isMust,jdbcType=TINYINT}, #{dataType,jdbcType=VARCHAR}, 
+      #{defaultValue,jdbcType=VARCHAR}, #{variableGroup,jdbcType=VARCHAR}, #{dataSource,jdbcType=VARCHAR}, 
+      #{dataInterface,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
+    insert into zoom_afe_feature_executor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="featureExecutorClassId != null" >
+        feature_executor_class_id,
+      </if>
+      <if test="inputFieldJsonpath != null" >
+        input_field_jsonpath,
+      </if>
+      <if test="outputField != null" >
+        output_field,
+      </if>
+      <if test="isMust != null" >
+        is_must,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="defaultValue != null" >
+        default_value,
+      </if>
+      <if test="variableGroup != null" >
+        variable_group,
+      </if>
+      <if test="dataSource != null" >
+        data_source,
+      </if>
+      <if test="dataInterface != null" >
+        data_interface,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="featureExecutorClassId != null" >
+        #{featureExecutorClassId,jdbcType=BIGINT},
+      </if>
+      <if test="inputFieldJsonpath != null" >
+        #{inputFieldJsonpath,jdbcType=VARCHAR},
+      </if>
+      <if test="outputField != null" >
+        #{outputField,jdbcType=VARCHAR},
+      </if>
+      <if test="isMust != null" >
+        #{isMust,jdbcType=TINYINT},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultValue != null" >
+        #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="variableGroup != null" >
+        #{variableGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInterface != null" >
+        #{dataInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutorExample" resultType="java.lang.Integer" >
+    select count(*) from zoom_afe_feature_executor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zoom_afe_feature_executor
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.featureExecutorClassId != null" >
+        feature_executor_class_id = #{record.featureExecutorClassId,jdbcType=BIGINT},
+      </if>
+      <if test="record.inputFieldJsonpath != null" >
+        input_field_jsonpath = #{record.inputFieldJsonpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outputField != null" >
+        output_field = #{record.outputField,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMust != null" >
+        is_must = #{record.isMust,jdbcType=TINYINT},
+      </if>
+      <if test="record.dataType != null" >
+        data_type = #{record.dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultValue != null" >
+        default_value = #{record.defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.variableGroup != null" >
+        variable_group = #{record.variableGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataSource != null" >
+        data_source = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataInterface != null" >
+        data_interface = #{record.dataInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zoom_afe_feature_executor
+    set id = #{record.id,jdbcType=BIGINT},
+      feature_executor_class_id = #{record.featureExecutorClassId,jdbcType=BIGINT},
+      input_field_jsonpath = #{record.inputFieldJsonpath,jdbcType=VARCHAR},
+      output_field = #{record.outputField,jdbcType=VARCHAR},
+      is_must = #{record.isMust,jdbcType=TINYINT},
+      data_type = #{record.dataType,jdbcType=VARCHAR},
+      default_value = #{record.defaultValue,jdbcType=VARCHAR},
+      variable_group = #{record.variableGroup,jdbcType=VARCHAR},
+      data_source = #{record.dataSource,jdbcType=VARCHAR},
+      data_interface = #{record.dataInterface,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
+    update zoom_afe_feature_executor
+    <set >
+      <if test="featureExecutorClassId != null" >
+        feature_executor_class_id = #{featureExecutorClassId,jdbcType=BIGINT},
+      </if>
+      <if test="inputFieldJsonpath != null" >
+        input_field_jsonpath = #{inputFieldJsonpath,jdbcType=VARCHAR},
+      </if>
+      <if test="outputField != null" >
+        output_field = #{outputField,jdbcType=VARCHAR},
+      </if>
+      <if test="isMust != null" >
+        is_must = #{isMust,jdbcType=TINYINT},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultValue != null" >
+        default_value = #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="variableGroup != null" >
+        variable_group = #{variableGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        data_source = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInterface != null" >
+        data_interface = #{dataInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
+    update zoom_afe_feature_executor
+    set feature_executor_class_id = #{featureExecutorClassId,jdbcType=BIGINT},
+      input_field_jsonpath = #{inputFieldJsonpath,jdbcType=VARCHAR},
+      output_field = #{outputField,jdbcType=VARCHAR},
+      is_must = #{isMust,jdbcType=TINYINT},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      default_value = #{defaultValue,jdbcType=VARCHAR},
+      variable_group = #{variableGroup,jdbcType=VARCHAR},
+      data_source = #{dataSource,jdbcType=VARCHAR},
+      data_interface = #{dataInterface,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

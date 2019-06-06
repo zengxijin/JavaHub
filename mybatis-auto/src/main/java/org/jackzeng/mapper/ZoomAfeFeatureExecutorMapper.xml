@@ -13,6 +13,7 @@
     <result column="data_source" property="dataSource" jdbcType="VARCHAR" />
     <result column="data_interface" property="dataInterface" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -76,8 +77,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, feature_executor_class_id, input_field_jsonpath, output_field, is_must, data_type, 
-    default_value, variable_group, data_source, data_interface, status, create_time, 
-    update_time
+    default_value, variable_group, data_source, data_interface, status, description, 
+    create_time, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutorExample" >
     select
@@ -109,18 +110,20 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
   <insert id="insert" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
     insert into zoom_afe_feature_executor (id, feature_executor_class_id, input_field_jsonpath, 
       output_field, is_must, data_type, 
       default_value, variable_group, data_source, 
-      data_interface, status, create_time, 
-      update_time)
+      data_interface, status, description, 
+      create_time, update_time)
     values (#{id,jdbcType=BIGINT}, #{featureExecutorClassId,jdbcType=BIGINT}, #{inputFieldJsonpath,jdbcType=VARCHAR}, 
       #{outputField,jdbcType=VARCHAR}, #{isMust,jdbcType=TINYINT}, #{dataType,jdbcType=VARCHAR}, 
       #{defaultValue,jdbcType=VARCHAR}, #{variableGroup,jdbcType=VARCHAR}, #{dataSource,jdbcType=VARCHAR}, 
-      #{dataInterface,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{dataInterface,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
+
   <insert id="insertSelective" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
     insert into zoom_afe_feature_executor
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -156,6 +159,9 @@
       </if>
       <if test="status != null" >
         status,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -197,6 +203,9 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -248,6 +257,9 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=TINYINT},
       </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -272,12 +284,14 @@
       data_source = #{record.dataSource,jdbcType=VARCHAR},
       data_interface = #{record.dataInterface,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
+      description = #{record.description,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
   <update id="updateByPrimaryKeySelective" parameterType="org.jackzeng.pojo.ZoomAfeFeatureExecutor" >
     update zoom_afe_feature_executor
     <set >
@@ -311,6 +325,9 @@
       <if test="status != null" >
         status = #{status,jdbcType=TINYINT},
       </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -332,6 +349,7 @@
       data_source = #{dataSource,jdbcType=VARCHAR},
       data_interface = #{dataInterface,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
+      description = #{description,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

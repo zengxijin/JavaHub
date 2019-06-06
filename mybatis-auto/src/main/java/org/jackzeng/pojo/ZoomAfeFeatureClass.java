@@ -9,6 +9,8 @@ public class ZoomAfeFeatureClass {
 
     private Byte status;
 
+    private String description;
+
     private Date createTime;
 
     private Date updateTime;
@@ -35,6 +37,14 @@ public class ZoomAfeFeatureClass {
 
     public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public Date getCreateTime() {

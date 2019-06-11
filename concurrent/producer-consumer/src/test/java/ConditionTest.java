@@ -1,4 +1,4 @@
-import org.junit.Test;
+import org.jackzeng.ConditionRace;
 
 /**
  * @author xijin.zeng created on 2018/7/17

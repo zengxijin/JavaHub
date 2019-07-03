@@ -1,7 +1,5 @@
 package com.jack.design.pattern.adapter;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class MediaAdapter implements MediaPlayer {
 	
 	AdvancedMediaPlayer advancedMediaPlayer;
@@ -13,7 +11,7 @@ public class MediaAdapter implements MediaPlayer {
 		}else if(advancedMediaPlayer instanceof PlcMediaPlayer){
 			advancedMediaPlayer.playVlc();
 		}else{
-			throw new NotImplementedException();
+			throw new UnsupportedOperationException();
 		}
 	}
 	

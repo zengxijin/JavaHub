@@ -1,7 +1,5 @@
 package com.jack.design.pattern.adapter;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class PlcMediaPlayer implements AdvancedMediaPlayer {
 
 	@Override
@@ -11,7 +9,7 @@ public class PlcMediaPlayer implements AdvancedMediaPlayer {
 
 	@Override
 	public void playMp4() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 		
 }

@@ -112,6 +112,11 @@ public class MinHeap {
         return heapData.firstElement();
     }
 
+    public void setRoot(int data) {
+        heapData.setElementAt(data, 0);
+        heapifyDown(0);
+    }
+
     public void printLeafs() {
         System.out.println("leaf nodes:");
         for (int i=0; i < size(); i++) {

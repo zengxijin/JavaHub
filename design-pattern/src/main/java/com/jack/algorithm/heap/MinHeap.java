@@ -119,7 +119,7 @@ public class MinHeap {
 
     public void printLeafs() {
         System.out.println("leaf nodes:");
-        for (int i=0; i < size(); i++) {
+        for (int i = 0; i < size(); i++) {
             if (isLeaf(i)) {
                 System.out.print(heapData.get(i) + " ");
             }
@@ -128,7 +128,7 @@ public class MinHeap {
     }
 
     public void dump() {
-        for (int i=0; i < (size() / 2); i++) {
+        for (int i = 0; i < (size() / 2); i++) {
             String info = "node:" + heapData.get(i);
             if (leftChild(i) < size()) {
                 info += " left-child:" + heapData.get(leftChild(i));
@@ -157,7 +157,22 @@ public class MinHeap {
 
         minHeap.dump();
 
-        System.out.println("poll min:" + minHeap.poll());
-        minHeap.dump();
+//        System.out.println("poll min:" + minHeap.poll());
+//        minHeap.dump();
+        while (minHeap.size() > 0) {
+            System.out.print(minHeap.poll() + " ");
+        }
+
+        System.out.println();
+
+        MinHeap h2 = new MinHeap(16);
+        int[] data = {2, 1, 4, 29, 12, 3};
+        for (int i = 0; i < data.length; i++) {
+            h2.insert(data[i]);
+        }
+
+        while (h2.size() > 0) {
+            System.out.print(h2.poll() + " ");
+        }
     }
 }

@@ -11,6 +11,7 @@ public class HeapSort {
 
     /**
      * start from index 0
+     * 这种方式需要额外的存储空间O(n)
      */
     private Vector<Integer> data;
 
@@ -94,7 +95,7 @@ public class HeapSort {
             minIndex = l;
         }
 
-        if (r < size() && data.get(minIndex) < data.get(r)) {
+        if (r < size() && data.get(minIndex) > data.get(r)) {
             minIndex = r;
         }
 

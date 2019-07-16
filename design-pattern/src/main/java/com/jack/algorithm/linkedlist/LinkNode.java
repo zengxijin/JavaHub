@@ -42,6 +42,14 @@ public class LinkNode {
         return head;
     }
 
+    public static LinkNode getTail(final LinkNode head) {
+        LinkNode node = head;
+        while (node.getNext() != null) {
+            node = node.getNext();
+        }
+        return node;
+    }
+
     public static void dump(final LinkNode head) {
         int count = 0;
         LinkNode pointer = head;

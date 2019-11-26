@@ -48,7 +48,10 @@ public class PyTest {
 
         // evalFunction("lambda x: x + 1", 10);
 
-        loadFile();
+        // loadFile();
+
+        // accessJavaObj();
+        accessGuestObj();
     }
 
     public static void evalFunction(String pyFunction, Object params) {
@@ -77,6 +80,7 @@ public class PyTest {
 
         Source source = Source.create(PYTHON, pyContent);
         context.eval(source);
+
         Value pyFunc = context.getPolyglotBindings().getMember("foo");
         if (pyFunc.canExecute()) {
             int retInt = pyFunc.execute(100).asInt();
@@ -92,6 +96,54 @@ public class PyTest {
         context.close();
 
     }
+
+    /**
+     * guest访问host语言的数据对象
+     */
+    private static void accessJavaObj() {
+        JavaBean bean = new JavaBean("jack zeng");
+        Context context = Context.newBuilder(PYTHON).build();
+        context.getBindings(PYTHON).putMember("bean", bean);
+        context.eval(PYTHON, "print(bean.getName())");
+        context.close();
+    }
+
+    /**
+     * host语言访问guest定义的类和数据
+     * @throws IOException
+     */
+    private static void accessGuestObj() throws IOException {
+        String pyStr = Resources.toString(Resources.getResource("py_02.py"), Charsets.UTF_8);
+        System.out.println(pyStr);
+
+        Context context = Context.newBuilder(PYTHON)
+                .allowAllAccess(true)
+                .build();
+
+        Source source = Source.create(PYTHON, pyStr);
+        context.eval(source); // load and compile
+
+        Value func = context.getPolyglotBindings().getMember("get_obj");
+        Value obj = func.execute();
+        if (obj.hasMembers()) {
+            String name = obj.getMember("name").asString();
+            int age = obj.getMember("age").isNull() ? -1 : obj.getMember("age").asInt();
+            System.out.println("name: " + name + " age: " + age);
+        }
+        System.out.println("==========");
+
+        Value value = context.eval(PYTHON, "PyObj()");
+        System.out.println("has members: " + value.hasMembers());
+        if (value.hasMembers()) {
+            String name = value.getMember("name").asString();
+            int age = value.getMember("age").isNull() ? -1 : value.getMember("age").asInt();
+            System.out.println("name: " + name + " age: " + age);
+        }
+
+        context.close();
+    }
+
+
 
 
 }

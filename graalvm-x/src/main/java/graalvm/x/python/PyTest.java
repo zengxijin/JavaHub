@@ -1,9 +1,13 @@
 package graalvm.x.python;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Stopwatch;
+import com.google.common.io.Resources;
 import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,7 +17,7 @@ public class PyTest {
 
     private static String PYTHON = "python";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Stopwatch stopwatch = Stopwatch.createStarted();
         System.out.println("create context");
         Context context = Context.create();
@@ -42,7 +46,9 @@ public class PyTest {
         // destroy
         context.close();
 
-        evalFunction("lambda x: x + 1", 10);
+        // evalFunction("lambda x: x + 1", 10);
+
+        loadFile();
     }
 
     public static void evalFunction(String pyFunction, Object params) {
@@ -59,4 +65,33 @@ public class PyTest {
             }
         }
     }
+
+    private static void loadFile() throws IOException {
+        String pyContent = Resources.toString(Resources.getResource("py_01.py"), Charsets.UTF_8);
+        System.out.println(pyContent);
+
+        Stopwatch watch = Stopwatch.createStarted();
+        Context.Builder builder = Context.newBuilder();
+        builder.allowAllAccess(true);
+        Context context = builder.build();
+
+        Source source = Source.create(PYTHON, pyContent);
+        context.eval(source);
+        Value pyFunc = context.getPolyglotBindings().getMember("foo");
+        if (pyFunc.canExecute()) {
+            int retInt = pyFunc.execute(100).asInt();
+            System.out.println(retInt);
+            System.out.println("first: " + watch.stop().elapsed(TimeUnit.MILLISECONDS));
+
+            watch.reset().start();
+            int r2 = pyFunc.execute(retInt).asInt();
+            System.out.println(r2);
+            System.out.println("second: " + watch.stop().elapsed(TimeUnit.MILLISECONDS));
+        }
+
+        context.close();
+
+    }
+
+
 }
